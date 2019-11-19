@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NearFit</string>
+    <string name="title_activity_workout">WorkoutActivity</string>
+    <string name="tab_text_1">Home Page</string>
+    <string name="tab_text_2">Scheda</string>
+    <string name="tab_text_3">Cronometro</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
