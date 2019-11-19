@@ -1,28 +1,108 @@
 package com.example.nearfit.BottomNavigationActivities;
 
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Chronometer;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.fragment.app.Fragment;
-;
+import android.widget.Button;
+
 
 import com.example.nearfit.R;
 
 public class cronometro extends Fragment{
 
+    Chronometer chronometer;
+    ChronometerHelper chronometerHelper = new ChronometerHelper();
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.cronometro, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.cronometro, container, false);
+        chronometer = view.findViewById(R.id.simpleChronometer);
 
-        return root;
+        final Button start = (Button) view.findViewById(R.id.start_btn);
+        final Button clear = (Button) view.findViewById(R.id.clear_btn);
+        final Button riprendi = (Button) view.findViewById(R.id.resume_btn);
+        final Button stop = (Button) view.findViewById(R.id.stop_btn);
+        stop.setVisibility(view.GONE);
+        start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startStopWatch();
+                stop.setVisibility(view.VISIBLE);
+                start.setVisibility(view.GONE);
+                clear.setVisibility(view.VISIBLE);
+            }
+        });
+
+        riprendi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startStopWatch();
+                stop.setVisibility(view.VISIBLE);
+                riprendi.setVisibility(view.GONE);
+            }
+        });
+
+        stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                stopStopWatch();
+                stop.setVisibility(view.GONE);
+                riprendi.setVisibility(view.VISIBLE);
+            }
+        });
+
+
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearWatch();
+                start.setVisibility(view.VISIBLE);
+                clear.setVisibility(view.GONE);
+                stop.setVisibility(view.GONE);
+                riprendi.setVisibility(view.GONE);
+
+            }
+        });
+        return view;
+    }
+
+    private void startStopWatch() {
+        if (chronometerHelper.getStartTime() == null) {
+            // If the start date is not defined, set it.
+            long startTime = SystemClock.elapsedRealtime();
+            chronometerHelper.setStartTime(startTime);
+            chronometer.setBase(startTime);
+        } else {
+            // Otherwise set the chronometer's base to the original
+            // starting time.
+            chronometer.setBase(chronometerHelper.getStartTime());
+
+        }
+
+        chronometer.start();
+
+    }
+
+    private void stopStopWatch() {
+
+        chronometer.stop();
+
+    }
+
+    private void clearWatch() {
+        long startTime = SystemClock.elapsedRealtime();
+        chronometerHelper.setStartTime(startTime);
+        chronometer.setBase(startTime);
+        chronometer.stop();
     }
 
 }
