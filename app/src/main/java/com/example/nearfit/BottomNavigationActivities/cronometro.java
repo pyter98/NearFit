@@ -15,7 +15,9 @@ import androidx.fragment.app.Fragment;
 import android.widget.Button;
 
 
+import com.example.nearfit.MainActivity;
 import com.example.nearfit.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class cronometro extends Fragment{
 
@@ -27,18 +29,20 @@ public class cronometro extends Fragment{
         final View view = inflater.inflate(R.layout.cronometro, container, false);
         chronometer = view.findViewById(R.id.simpleChronometer);
 
-        final Button start = (Button) view.findViewById(R.id.start_btn);
-        final Button clear = (Button) view.findViewById(R.id.clear_btn);
-        final Button riprendi = (Button) view.findViewById(R.id.resume_btn);
-        final Button stop = (Button) view.findViewById(R.id.stop_btn);
-        stop.setVisibility(view.GONE);
+        final FloatingActionButton start = (FloatingActionButton) view.findViewById(R.id.start_btn);
+        final FloatingActionButton clear = view.findViewById(R.id.clear_btn);
+        final FloatingActionButton riprendi = (FloatingActionButton) view.findViewById(R.id.resume_btn);
+        final FloatingActionButton stop = (FloatingActionButton) view.findViewById(R.id.stop_btn);
+        stop.hide();
+        //start.show();
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startStopWatch();
-                stop.setVisibility(view.VISIBLE);
-                start.setVisibility(view.GONE);
-                clear.setVisibility(view.VISIBLE);
+
+                stop.show();
+                start.hide();
+                clear.show();
             }
         });
 
@@ -46,8 +50,10 @@ public class cronometro extends Fragment{
             @Override
             public void onClick(View v) {
                 startStopWatch();
-                stop.setVisibility(view.VISIBLE);
-                riprendi.setVisibility(view.GONE);
+                //stop.setVisibility(view.VISIBLE);
+                //riprendi.setVisibility(view.GONE);
+                stop.show();
+                riprendi.hide();
             }
         });
 
@@ -55,8 +61,10 @@ public class cronometro extends Fragment{
             @Override
             public void onClick(View v) {
                 stopStopWatch();
-                stop.setVisibility(view.GONE);
-                riprendi.setVisibility(view.VISIBLE);
+                //stop.setVisibility(view.GONE);
+                //riprendi.setVisibility(view.VISIBLE);
+                stop.hide();
+                riprendi.show();
             }
         });
 
@@ -65,10 +73,14 @@ public class cronometro extends Fragment{
             @Override
             public void onClick(View v) {
                 clearWatch();
-                start.setVisibility(view.VISIBLE);
-                clear.setVisibility(view.GONE);
-                stop.setVisibility(view.GONE);
-                riprendi.setVisibility(view.GONE);
+                //start.setVisibility(view.VISIBLE);
+                //clear.setVisibility(view.GONE);
+                //stop.setVisibility(view.GONE);
+                //riprendi.setVisibility(view.GONE);
+                stop.hide();
+                start.show();
+                clear.hide();
+                riprendi.hide();
 
             }
         });
