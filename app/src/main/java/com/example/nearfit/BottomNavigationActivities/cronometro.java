@@ -5,6 +5,7 @@ import android.graphics.drawable.RotateDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +41,7 @@ public class cronometro extends Fragment{
         final FloatingActionButton stop = (FloatingActionButton) view.findViewById(R.id.stop_btn);
         final ProgressBar progressBar = view.findViewById(R.id.pr_crono);
         final RotateDrawable rotateDrawable = (RotateDrawable) progressBar.getIndeterminateDrawable();
+
         stop.hide();
 
        // if (progressBar != null) {
