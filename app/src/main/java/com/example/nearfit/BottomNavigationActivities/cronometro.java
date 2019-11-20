@@ -26,7 +26,7 @@ import com.example.nearfit.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class cronometro extends Fragment{
-
+//TODO Notifica
     Chronometer chronometer;
     ChronometerHelper chronometerHelper = new ChronometerHelper();
     @Override

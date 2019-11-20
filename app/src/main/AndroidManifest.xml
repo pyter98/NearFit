@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc"
+        android:required="true"/>
 
     <application
         android:allowBackup="true"
@@ -13,10 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".BottomNavigationActivities.PostLoginActivity"></activity>
-        <activity
-            android:name=".WorkoutActivity"
-            android:label="WorkoutActivity"
-            android:theme="@style/AppTheme" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

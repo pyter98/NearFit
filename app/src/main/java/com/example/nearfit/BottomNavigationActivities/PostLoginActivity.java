@@ -18,6 +18,7 @@ import com.example.nearfit.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.example.nearfit.SessionManager;
 
+import java.lang.reflect.Array;
 import java.util.HashMap;
 
 public class PostLoginActivity extends AppCompatActivity {
@@ -32,12 +33,8 @@ public class PostLoginActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         sessionManager.checkLogin();
 
-
-        sessionManager = new SessionManager(this);
-        sessionManager.checkLogin();
-
         HashMap<String,String> user = sessionManager.getUserDetail();
-        String mName = user.get(sessionManager.NAME);
+        String mName = user.get(sessionManager.PASSWORD);
 
         actionBar.setTitle("Bentornato, "+mName);
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FF3F51B5")));
@@ -50,11 +47,13 @@ public class PostLoginActivity extends AppCompatActivity {
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                    HashMap<String,String> user = sessionManager.getUserDetail();
+                    String mUser = user.get(sessionManager.USERNAME);
+                    String mPassword = user.get(sessionManager.PASSWORD);
                     Fragment selectedFragment = null;
                     switch (menuItem.getItemId()) {
                         case R.id.home:
-                            selectedFragment = new nfc();
-
+                            selectedFragment = new nfc(mUser,mPassword);
                             break;
                         case R.id.scheda:
                             selectedFragment = new scheda();
@@ -92,5 +91,17 @@ public class PostLoginActivity extends AppCompatActivity {
             //return true;
 
         }
+    }
+
+    protected String getUsername() {
+        HashMap<String,String> user = sessionManager.getUserDetail();
+        String mName = user.get(sessionManager.USERNAME);
+        return mName;
+    }
+
+    protected String getPassword() {
+        HashMap<String,String> user = sessionManager.getUserDetail();
+        //String mPasw = user.get(sessionManager.PASSWORD);
+        return "1";
     }
 }

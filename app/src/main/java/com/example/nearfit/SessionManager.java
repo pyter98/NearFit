@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.example.nearfit.BottomNavigationActivities.PostLoginActivity;
+import com.example.nearfit.BottomNavigationActivities.nfc;
 
 import java.util.HashMap;
 
@@ -21,6 +22,7 @@ public class SessionManager {
     public static final String NAME = "NAME";
     public static final String USERNAME = "USERNAME";
     public static final String ID = "ID";
+    public static final String PASSWORD = "PASSWORD";
 
     public SessionManager(Context context) {
         this.context = context;
@@ -28,12 +30,13 @@ public class SessionManager {
         editor = sharedPreferences.edit();
     }
 
-    public void createSession(String name, String email, String id){
+    public void createSession(String name, String email, String id, String password){
 
         editor.putBoolean(LOGIN, true);
         editor.putString(NAME, name);
         editor.putString(USERNAME, email);
         editor.putString(ID, id);
+        editor.putString(PASSWORD,password);
         editor.apply();
 
     }
@@ -57,6 +60,7 @@ public class SessionManager {
         user.put(NAME, sharedPreferences.getString(NAME, null));
         user.put(USERNAME, sharedPreferences.getString(USERNAME, null));
         user.put(ID, sharedPreferences.getString(ID, null));
+        user.put(PASSWORD, sharedPreferences.getString(PASSWORD, null));
 
         return user;
     }

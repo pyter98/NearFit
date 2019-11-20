@@ -93,10 +93,11 @@ public class MainActivity extends AppCompatActivity {
                             String name = jsonObject.getString("name");
                             String user = jsonObject.getString("username");
                             String ID = jsonObject.getString("ID");
+                            String password = jsonObject.getString("password");
 
                             if (success.equals("1")) {
 
-                                sessionManager.createSession(name,user,ID);
+                                sessionManager.createSession(name,user,ID,password);
 
                                 Intent intent = new Intent(MainActivity.this, PostLoginActivity.class);
                                 intent.putExtra("name", name);
