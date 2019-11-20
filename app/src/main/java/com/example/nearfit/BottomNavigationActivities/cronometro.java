@@ -1,10 +1,15 @@
 package com.example.nearfit.BottomNavigationActivities;
 
+import android.app.ProgressDialog;
+import android.graphics.drawable.RotateDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Chronometer;
 
@@ -33,16 +38,26 @@ public class cronometro extends Fragment{
         final FloatingActionButton clear = view.findViewById(R.id.clear_btn);
         final FloatingActionButton riprendi = (FloatingActionButton) view.findViewById(R.id.resume_btn);
         final FloatingActionButton stop = (FloatingActionButton) view.findViewById(R.id.stop_btn);
+        final ProgressBar progressBar = view.findViewById(R.id.pr_crono);
+        final RotateDrawable rotateDrawable = (RotateDrawable) progressBar.getIndeterminateDrawable();
         stop.hide();
+
+       // if (progressBar != null) {
+        //    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+                rotateDrawable.setToDegrees(270);
+           // }
+        //}
+
         //start.show();
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startStopWatch();
-
                 stop.show();
                 start.hide();
                 clear.show();
+
             }
         });
 
@@ -50,8 +65,6 @@ public class cronometro extends Fragment{
             @Override
             public void onClick(View v) {
                 startStopWatch();
-                //stop.setVisibility(view.VISIBLE);
-                //riprendi.setVisibility(view.GONE);
                 stop.show();
                 riprendi.hide();
             }
@@ -61,10 +74,10 @@ public class cronometro extends Fragment{
             @Override
             public void onClick(View v) {
                 stopStopWatch();
-                //stop.setVisibility(view.GONE);
-                //riprendi.setVisibility(view.VISIBLE);
                 stop.hide();
                 riprendi.show();
+                rotateDrawable.setToDegrees(rotateDrawable.getFromDegrees());
+
             }
         });
 
@@ -73,14 +86,11 @@ public class cronometro extends Fragment{
             @Override
             public void onClick(View v) {
                 clearWatch();
-                //start.setVisibility(view.VISIBLE);
-                //clear.setVisibility(view.GONE);
-                //stop.setVisibility(view.GONE);
-                //riprendi.setVisibility(view.GONE);
                 stop.hide();
                 start.show();
                 clear.hide();
                 riprendi.hide();
+                rotateDrawable.setToDegrees(270);
 
             }
         });

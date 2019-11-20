@@ -29,6 +29,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+// TODO animations
 
 public class MainActivity extends AppCompatActivity {
 
