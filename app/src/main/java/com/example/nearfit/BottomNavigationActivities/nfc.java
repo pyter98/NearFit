@@ -1,5 +1,8 @@
 package com.example.nearfit.BottomNavigationActivities;
 
+import android.app.ActionBar;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +43,7 @@ public class nfc extends Fragment {
     TextView textView;
     Intent intent;
     Button button;
+    ActionBar actionBar;
 
     public nfc(String username, String password) {
         this.username = username;
@@ -54,6 +58,7 @@ public class nfc extends Fragment {
         final TextView textView = root.findViewById(R.id.textView);
         button = root.findViewById(R.id.transfer);
 
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,12 +66,8 @@ public class nfc extends Fragment {
                 i.putExtra("username", username);
                 i.putExtra("password", password);
                 startActivity(i);
-
-
             }
         });
-
-
 
         return root;
     }

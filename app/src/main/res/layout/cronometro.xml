@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".tabbedActivitySet.PlaceholderFragment">
+    tools:context=".BottomNavigationActivities.cronometro">
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -55,26 +55,23 @@
 
     <Chronometer
         android:id="@+id/simpleChronometer"
-        android:layout_width="133dp"
+        android:layout_width="119dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="157dp"
-        android:layout_marginTop="204dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="206dp"
+        android:layout_marginEnd="104dp"
         android:textSize="36sp" />
 
     <ProgressBar
         android:id="@+id/pr_crono"
-        android:layout_width="419dp"
-        android:layout_height="289dp"
+        android:layout_width="307dp"
+        android:layout_height="321dp"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="37dp"
-        android:layout_marginTop="82dp"
-        android:visibility="visible"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="70dp"
         android:indeterminateDrawable="@drawable/progress_cronometro"
-
-
-        />
+        android:visibility="visible" />
 
 </RelativeLayout>

@@ -24,6 +24,7 @@ import java.util.HashMap;
 public class PostLoginActivity extends AppCompatActivity {
     ActionBar actionBar;
     SessionManager sessionManager;
+    BottomNavigationView bottomNav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +35,12 @@ public class PostLoginActivity extends AppCompatActivity {
         sessionManager.checkLogin();
 
         HashMap<String,String> user = sessionManager.getUserDetail();
-        String mName = user.get(sessionManager.PASSWORD);
+        String mName = user.get(sessionManager.NAME);
 
         actionBar.setTitle("Bentornato, "+mName);
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FF3F51B5")));
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+        bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
     }
 
