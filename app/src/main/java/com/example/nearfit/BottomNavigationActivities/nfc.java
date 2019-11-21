@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer;
 import androidx.fragment.app.Fragment;
 import com.example.nearfit.BottomNavigationActivities.PostLoginActivity;
 
+import com.example.nearfit.MainActivity;
 import com.example.nearfit.R;
 import com.example.nearfit.SessionManager;
 import java.io.File;
@@ -37,6 +39,7 @@ public class nfc extends Fragment {
     NfcAdapter nfcAdapter;
     TextView textView;
     Intent intent;
+    Button button;
 
     public nfc(String username, String password) {
         this.username = username;
@@ -47,8 +50,22 @@ public class nfc extends Fragment {
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.nfc, container, false);
-        TextView textView = root.findViewById(R.id.TexView);
+        final View root = inflater.inflate(R.layout.nfc, container, false);
+        final TextView textView = root.findViewById(R.id.textView);
+        button = root.findViewById(R.id.transfer);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), nfcTransfer.class);
+                i.putExtra("username", username);
+                i.putExtra("password", password);
+                startActivity(i);
+
+
+            }
+        });
+
 
 
         return root;

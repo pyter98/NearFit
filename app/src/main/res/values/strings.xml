@@ -4,6 +4,7 @@
     <string name="tab_text_1">Home Page</string>
     <string name="tab_text_2">Scheda</string>
     <string name="tab_text_3">Cronometro</string>
+    <string name="title_activity_nfc_transfer">nfcTransfer</string>
 
 
 </resources>
