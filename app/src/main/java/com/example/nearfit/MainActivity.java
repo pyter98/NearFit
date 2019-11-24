@@ -3,6 +3,7 @@ package com.example.nearfit;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.nearfit.BottomNavigationActivities.PostLoginActivity;
+import com.example.nearfit.BottomNavigationActivities.nfc;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,8 +51,11 @@ public class MainActivity extends AppCompatActivity {
 
         sessionManager = new SessionManager(this);
 
+
+
         if (sessionManager.isLoggin()){
             Intent intent = new Intent(MainActivity.this, PostLoginActivity.class);
+            intent.putExtra("nfc", R.id.home);
             startActivity(intent);
             MainActivity.this.finish();
         }
@@ -76,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+
     }
 
     private void Login(final String username, final String password){

@@ -96,21 +96,9 @@ public class cronometro extends Fragment{
     }
 
     private void startStopWatch() {
-        /*if (chronometerHelper.getStartTime() == null) {
-            // If the start date is not defined, set it.
-            long startTime = SystemClock.elapsedRealtime() - pauseOffset;
-            startTime = startTime - pauseOffset;
-            chronometer.setBase(startTime);
-            chronometerHelper.setStartTime(startTime);
-        } else {
-            // Otherwise set the chronometer's base to the original
-            // starting time.
-            chronometer.setBase(chronometerHelper.getStartTime());
 
-
-        }*/
         if (!running) {
-            chronometer.setBase(SystemClock.elapsedRealtime() -pauseOffset);
+            chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
             chronometer.start();
             running = true;
         }
@@ -127,13 +115,11 @@ public class cronometro extends Fragment{
     }
 
     private void clearWatch() {
-        /*long startTime = SystemClock.elapsedRealtime();
+        long startTime = SystemClock.elapsedRealtime();
         chronometerHelper.setStartTime(startTime);
         chronometer.setBase(startTime);
-        chronometer.stop();
-        pauseOffset = 0;*/
-        chronometer.setBase(SystemClock.elapsedRealtime());
         pauseOffset = 0;
+
     }
 
 

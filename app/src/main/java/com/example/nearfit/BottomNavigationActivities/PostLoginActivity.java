@@ -4,21 +4,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
-
-import com.example.nearfit.HomeActivity;
 import com.example.nearfit.R;
 import com.example.nearfit.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.example.nearfit.SessionManager;
-
-import java.lang.reflect.Array;
 import java.util.HashMap;
 
 public class PostLoginActivity extends AppCompatActivity {
@@ -36,12 +32,22 @@ public class PostLoginActivity extends AppCompatActivity {
 
         HashMap<String,String> user = sessionManager.getUserDetail();
         String mName = user.get(sessionManager.NAME);
+        String mUser = user.get(sessionManager.USERNAME);
+        String mPassword = user.get(sessionManager.PASSWORD);
 
         actionBar.setTitle("Bentornato, "+mName);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FF3F51B5")));
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5C7E5F")));
 
         bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        //Lancio il primo fragment(nfc)
+        if (savedInstanceState == null){
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.fragment_container, new nfc(mUser,mPassword));
+            fragmentTransaction.commit();
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -89,20 +95,7 @@ public class PostLoginActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-            //return true;
 
         }
-    }
-
-    protected String getUsername() {
-        HashMap<String,String> user = sessionManager.getUserDetail();
-        String mName = user.get(sessionManager.USERNAME);
-        return mName;
-    }
-
-    protected String getPassword() {
-        HashMap<String,String> user = sessionManager.getUserDetail();
-        //String mPasw = user.get(sessionManager.PASSWORD);
-        return "1";
     }
 }

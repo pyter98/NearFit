@@ -9,11 +9,13 @@ import android.nfc.NfcAdapter.CreateNdefMessageCallback;
 import android.nfc.NfcEvent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nearfit.R;
 
@@ -22,7 +24,7 @@ import java.nio.charset.Charset;
 import static android.nfc.NdefRecord.createMime;
 
 
-public class nfcTransfer extends Activity implements CreateNdefMessageCallback {
+public class nfcTransfer extends AppCompatActivity implements CreateNdefMessageCallback {
     NfcAdapter nfcAdapter;
     TextView textView;
     String username;
@@ -35,6 +37,7 @@ public class nfcTransfer extends Activity implements CreateNdefMessageCallback {
         setContentView(R.layout.activity_nfc_transfer);
         TextView textView = findViewById(R.id.user);
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+
         
         if (nfcAdapter == null) {
             Toast.makeText(this, "NFC is not available", Toast.LENGTH_LONG).show();
@@ -73,11 +76,11 @@ public class nfcTransfer extends Activity implements CreateNdefMessageCallback {
         //}
     }
 
-    @Override
+    /*@Override
     public void onNewIntent(Intent intent) {
         // onResume gets called after this to handle the intent
         setIntent(intent);
-    }
+    }*/
 
     /**
      * Parses the NDEF Message from the intent and prints to the TextView
