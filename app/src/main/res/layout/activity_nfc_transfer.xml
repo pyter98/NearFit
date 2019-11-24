@@ -17,8 +17,31 @@
 
 
 
+
     <include layout="@layout/content_nfc_transfer" />
 
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="Avvicina il telefono al dispositivo per accedere in palestra."
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimaryDark2"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:text="Username: "
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -29,6 +29,8 @@ public class cronometro extends Fragment{
 //TODO Notifica
     Chronometer chronometer;
     ChronometerHelper chronometerHelper = new ChronometerHelper();
+    private boolean running;
+    private long pauseOffset;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,15 +45,9 @@ public class cronometro extends Fragment{
         final RotateDrawable rotateDrawable = (RotateDrawable) progressBar.getIndeterminateDrawable();
 
         stop.hide();
+        //progressBar.stopNestedScroll();
+        rotateDrawable.setToDegrees(270);
 
-       // if (progressBar != null) {
-        //    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-
-                rotateDrawable.setToDegrees(270);
-           // }
-        //}
-
-        //start.show();
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,33 +96,45 @@ public class cronometro extends Fragment{
     }
 
     private void startStopWatch() {
-        if (chronometerHelper.getStartTime() == null) {
+        /*if (chronometerHelper.getStartTime() == null) {
             // If the start date is not defined, set it.
-            long startTime = SystemClock.elapsedRealtime();
-            chronometerHelper.setStartTime(startTime);
+            long startTime = SystemClock.elapsedRealtime() - pauseOffset;
+            startTime = startTime - pauseOffset;
             chronometer.setBase(startTime);
+            chronometerHelper.setStartTime(startTime);
         } else {
             // Otherwise set the chronometer's base to the original
             // starting time.
             chronometer.setBase(chronometerHelper.getStartTime());
 
-        }
 
-        chronometer.start();
+        }*/
+        if (!running) {
+            chronometer.setBase(SystemClock.elapsedRealtime() -pauseOffset);
+            chronometer.start();
+            running = true;
+        }
 
     }
 
     private void stopStopWatch() {
-
-        chronometer.stop();
+        if (running) {
+            chronometer.stop();
+            pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+            running = false;
+        }
 
     }
 
     private void clearWatch() {
-        long startTime = SystemClock.elapsedRealtime();
+        /*long startTime = SystemClock.elapsedRealtime();
         chronometerHelper.setStartTime(startTime);
         chronometer.setBase(startTime);
         chronometer.stop();
+        pauseOffset = 0;*/
+        chronometer.setBase(SystemClock.elapsedRealtime());
+        pauseOffset = 0;
     }
+
 
 }

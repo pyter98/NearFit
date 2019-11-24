@@ -43,8 +43,6 @@ public class nfc extends Fragment {
     TextView textView;
     Intent intent;
     Button button;
-    ActionBar actionBar;
-
     public nfc(String username, String password) {
         this.username = username;
         this.password = password;
@@ -55,7 +53,6 @@ public class nfc extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.nfc, container, false);
-        final TextView textView = root.findViewById(R.id.textView);
         button = root.findViewById(R.id.transfer);
 
 

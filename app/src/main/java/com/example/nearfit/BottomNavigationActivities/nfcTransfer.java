@@ -11,6 +11,9 @@ import android.os.Bundle;
 import android.os.Parcelable;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
+
+import androidx.appcompat.app.ActionBar;
 
 import com.example.nearfit.R;
 
@@ -30,9 +33,9 @@ public class nfcTransfer extends Activity implements CreateNdefMessageCallback {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc_transfer);
-        TextView textView = findViewById(R.id.textView);
-        // Check for available NFC Adapter
+        TextView textView = findViewById(R.id.user);
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+        
         if (nfcAdapter == null) {
             Toast.makeText(this, "NFC is not available", Toast.LENGTH_LONG).show();
             finish();
@@ -41,6 +44,8 @@ public class nfcTransfer extends Activity implements CreateNdefMessageCallback {
         bundle = getIntent().getExtras();
         username= bundle.getString("username");
         password=bundle.getString("password");
+
+        textView.append(" "+username);
         // Register callback
         nfcAdapter.setNdefPushMessageCallback(this, this);
     }
@@ -63,9 +68,9 @@ public class nfcTransfer extends Activity implements CreateNdefMessageCallback {
     public void onResume() {
         super.onResume();
         // Check to see that the Activity started due to an Android Beam
-        if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
-            processIntent(getIntent());
-        }
+        //if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(getIntent().getAction())) {
+            //processIntent(getIntent());
+        //}
     }
 
     @Override
@@ -77,13 +82,13 @@ public class nfcTransfer extends Activity implements CreateNdefMessageCallback {
     /**
      * Parses the NDEF Message from the intent and prints to the TextView
      */
-    void processIntent(Intent intent) {
+    /*void processIntent(Intent intent) {
         textView = (TextView) findViewById(R.id.textView);
         Parcelable[] rawMsgs = intent.getParcelableArrayExtra(
                 NfcAdapter.EXTRA_NDEF_MESSAGES);
         // only one message sent during the beam
-        NdefMessage msg = (NdefMessage) rawMsgs[0];
+        //NdefMessage msg = (NdefMessage) rawMsgs[0];
         // record 0 contains the MIME type, record 1 is the AAR, if present
-        textView.setText(new String(msg.getRecords()[0].getPayload()));
-    }
+        //textView.setText(new String(msg.getRecords()[0].getPayload()));
+    }*/
 }
