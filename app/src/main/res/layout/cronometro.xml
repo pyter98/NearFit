@@ -55,16 +55,16 @@
 
     <Chronometer
         android:id="@+id/simpleChronometer"
-        android:layout_width="119dp"
+        android:layout_width="95dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
         android:layout_marginTop="206dp"
         android:layout_marginEnd="104dp"
         android:textSize="36sp" />
 
-    <ProgressBar
+    <!--ProgressBar
         android:id="@+id/pr_crono"
         android:layout_width="307dp"
         android:layout_height="321dp"
@@ -72,6 +72,6 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="70dp"
         android:indeterminateDrawable="@drawable/progress_cronometro"
-        android:visibility="visible" />
+        android:visibility="visible" /-->
 
 </RelativeLayout>

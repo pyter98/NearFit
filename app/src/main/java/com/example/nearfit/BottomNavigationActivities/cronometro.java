@@ -41,12 +41,12 @@ public class cronometro extends Fragment{
         final FloatingActionButton clear = view.findViewById(R.id.clear_btn);
         final FloatingActionButton riprendi = (FloatingActionButton) view.findViewById(R.id.resume_btn);
         final FloatingActionButton stop = (FloatingActionButton) view.findViewById(R.id.stop_btn);
-        final ProgressBar progressBar = view.findViewById(R.id.pr_crono);
-        final RotateDrawable rotateDrawable = (RotateDrawable) progressBar.getIndeterminateDrawable();
+        //final ProgressBar progressBar = view.findViewById(R.id.pr_crono);
+        //final RotateDrawable rotateDrawable = (RotateDrawable) progressBar.getIndeterminateDrawable();
 
         stop.hide();
         //progressBar.stopNestedScroll();
-        rotateDrawable.setToDegrees(270);
+        //rotateDrawable.setToDegrees(270);
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +74,7 @@ public class cronometro extends Fragment{
                 stopStopWatch();
                 stop.hide();
                 riprendi.show();
-                rotateDrawable.setToDegrees(rotateDrawable.getFromDegrees());
+                //rotateDrawable.setToDegrees(rotateDrawable.getFromDegrees());
 
             }
         });
@@ -88,7 +88,7 @@ public class cronometro extends Fragment{
                 start.show();
                 clear.hide();
                 riprendi.hide();
-                rotateDrawable.setToDegrees(270);
+                //rotateDrawable.setToDegrees(270);
 
             }
         });

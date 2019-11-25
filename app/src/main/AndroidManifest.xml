@@ -17,10 +17,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Theme"></activity>
+        <activity android:name=".Impostazioni" />
         <activity
             android:name=".BottomNavigationActivities.nfcTransfer"
             android:label="@string/title_activity_nfc_transfer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".BottomNavigationActivities.PostLoginActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity">

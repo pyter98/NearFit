@@ -6,17 +6,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.example.nearfit.Impostazioni;
 import com.example.nearfit.R;
 import com.example.nearfit.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.HashMap;
 
+//TODO 160799; 089820; 980206; 9810FE
 public class PostLoginActivity extends AppCompatActivity {
     ActionBar actionBar;
     SessionManager sessionManager;
@@ -36,7 +41,7 @@ public class PostLoginActivity extends AppCompatActivity {
         String mPassword = user.get(sessionManager.PASSWORD);
 
         actionBar.setTitle("Bentornato, "+mName);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#5C7E5F")));
+        //actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#980206")));
 
         bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -91,7 +96,9 @@ public class PostLoginActivity extends AppCompatActivity {
                 sessionManager.logout();
                 return true;
             case R.id.impostazioni:
-                Toast.makeText(PostLoginActivity.this, "Impostazioni",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(PostLoginActivity.this, Impostazioni.class);
+                startActivity(i);
+                //Toast.makeText(PostLoginActivity.this, "Impostazioni",Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
