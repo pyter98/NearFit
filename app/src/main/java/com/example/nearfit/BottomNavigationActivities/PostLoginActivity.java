@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.example.nearfit.Impostazioni;
+import com.example.nearfit.Settings.Impostazioni;
 import com.example.nearfit.R;
 import com.example.nearfit.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

@@ -1,8 +1,10 @@
-package com.example.nearfit;
+package com.example.nearfit.Settings;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
+
+import com.example.nearfit.R;
 
 public class ThemeUtils
 {

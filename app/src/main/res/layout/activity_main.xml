@@ -32,6 +32,12 @@
         android:inputType="text"
         android:maxLines="1"
         android:textColor="@android:color/black" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/laypsw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        android:layout_below="@+id/username">
 
     <EditText
         android:id="@+id/password"
@@ -44,12 +50,14 @@
         android:inputType="textPassword"
         android:maxLines="1"
         android:textColor="@android:color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <ProgressBar
         android:id="@+id/loading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/password"
+        android:layout_below="@id/laypsw"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="51dp"
         android:indeterminateDrawable="@drawable/progress"
@@ -60,7 +68,7 @@
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
         android:id="@+id/btn_login"
-        android:layout_below="@id/password"
+        android:layout_below="@id/laypsw"
         android:layout_marginTop="50dp"
         android:background="@drawable/risorse"
         android:text="login"
