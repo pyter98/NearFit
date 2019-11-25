@@ -25,6 +25,31 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">#160799</item>
 
+
+    </style>
+
+    <style name="Ernesto" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">#089820</item>
+
+    </style>
+
+    <style name="Piero" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">#980206</item>
+
+    </style>
+
+    <style name="Riccardo" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark2</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:statusBarColor">#9810FE</item>
+
     </style>
 
 </resources>

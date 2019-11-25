@@ -41,7 +41,9 @@ public class PostLoginActivity extends AppCompatActivity {
         String mPassword = user.get(sessionManager.PASSWORD);
 
         actionBar.setTitle("Bentornato, "+mName);
-        //actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#980206")));
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#980206")));
+        //actionBar.setBackgroundDrawable(new ColorDrawable(R.drawable.defaultcolor));
+
 
         bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
