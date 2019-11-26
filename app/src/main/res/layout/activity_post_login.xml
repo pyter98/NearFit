@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BottomNavigationActivities.PostLoginActivity">
+    tools:context=".BottomNavigationActivities.PostLoginActivity"
+    android:theme="@style/AppTheme">
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -18,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#232f3e"
+        android:theme="@style/MainTheme"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@color/colorAccent"
         app:menu="@menu/bottom_navigation"
