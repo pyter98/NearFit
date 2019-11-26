@@ -21,7 +21,7 @@ public class Impostazioni extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_impostazioni);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        actionBar.setTitle("Impostazioni");
 
         ListView listView = findViewById(R.id.lista);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, items);

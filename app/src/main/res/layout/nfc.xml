@@ -12,12 +12,15 @@
         android:id="@+id/transfer"
         android:layout_width="276dp"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Accedi in Palestra" />
+        android:layout_marginTop="380dp"
+        android:text="Accedi in Palestra"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/buttonsaveedit"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="94dp"
         />
+
 
 </RelativeLayout>

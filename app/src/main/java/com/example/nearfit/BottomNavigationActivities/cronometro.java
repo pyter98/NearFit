@@ -37,6 +37,8 @@ public class cronometro extends Fragment{
         final View view = inflater.inflate(R.layout.cronometro, container, false);
         chronometer = view.findViewById(R.id.simpleChronometer);
 
+        ((PostLoginActivity) getActivity()).setTextActionBar("Cronometro");
+
         final FloatingActionButton start = (FloatingActionButton) view.findViewById(R.id.start_btn);
         final FloatingActionButton clear = view.findViewById(R.id.clear_btn);
         final FloatingActionButton riprendi = (FloatingActionButton) view.findViewById(R.id.resume_btn);

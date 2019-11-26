@@ -17,7 +17,7 @@ public class scheda extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.scheda, container, false);
-
+        ((PostLoginActivity) getActivity()).setTextActionBar("Scheda");
         return root;
     }
 

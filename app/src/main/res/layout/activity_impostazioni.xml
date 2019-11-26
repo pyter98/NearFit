@@ -6,54 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Settings.Impostazioni">
 
-
-
-    <Toolbar
-        android:id="@+id/tool"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="#980206">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Impostazioni"
-            android:textColor="#fff"
-            android:textSize="30sp"
-
-            />
-
-    </Toolbar>
-
-    <!--Button
-        android:id="@+id/account"
-        android:layout_width="204dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tool"
-        android:layout_marginTop="200dp"
-        android:background="#fff"
-        android:drawableLeft="@drawable/ic_account_circle_black_24dp"
-        android:text="Account"
-        android:textColor="#000"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"
-        />
-
-    <Button
-        android:id="@+id/Theme"
-        android:layout_width="157dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/account"
-        android:layout_marginTop="40dp"
-        android:background="#fff"
-        android:drawableLeft="@drawable/ic_palette_black_24dp"
-        android:text="Tema"
-        android:textColor="#000"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/-->
-
     <ListView
         android:id="@+id/lista"
         android:layout_width="wrap_content"
@@ -63,7 +15,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="14dp"
-        android:layout_marginTop="53dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="2dp"
         android:layout_marginBottom="0dp" />
 

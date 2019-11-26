@@ -5,54 +5,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Settings.EditUser"
-    android:background="#fff"
+    android:background="@color/colorAccent"
     android:orientation="horizontal">
 
-    <Toolbar
-        android:id="@+id/editTool"
-        android:layout_width="match_parent"
+
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/logoapp"
+        android:layout_marginTop="50dp"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/editUser1"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        tools:ignore = "MissingConstraints"
-        android:background="#980206">
-        <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/logo">
+
+        <EditText
+            android:id="@+id/editUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Impostazioni"
-            android:textColor="@color/colorAccent"
-            android:textSize="20dp"
+            android:hint=" Modifica Username"
+            android:inputType="text"
+            android:maxLines="1"
             />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    </Toolbar>
-
-    <EditText
-        android:id="@+id/editUser"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint=" Modifica Username"
-        android:layout_below="@+id/editTool"
-        android:layout_marginTop="250dp"
-        android:inputType="text"
-        android:maxLines="1"
-        tools:layout_editor_absoluteY="306dp" />
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/laypsw"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
-        android:layout_below="@+id/editUser"
-        android:layout_marginTop="20dp">
-    <EditText
-        android:id="@+id/editPsw"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:maxLines="1"
-        tools:ignore="MissingConstraints"
-        android:hint="Modifica Password"
-        />
-</com.google.android.material.textfield.TextInputLayout>
+        android:layout_below="@+id/editUser1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        app:passwordToggleEnabled="true">
+
+        <EditText
+            android:id="@+id/editPsw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Modifica Password"
+            android:inputType="textPassword"
+            android:maxLines="1"
+
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btn_edit"
@@ -65,7 +69,7 @@
         android:fontFamily="sans-serif"
         android:text="Salva"
         android:textColor="#fff"
-        android:textSize="18sp" />
+        android:textSize="15sp" />
 
 
 

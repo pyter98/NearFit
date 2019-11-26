@@ -1,8 +1,10 @@
 package com.example.nearfit.BottomNavigationActivities;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -11,6 +13,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -31,7 +34,7 @@ public class PostLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_login);
 
-        ActionBar actionBar = getSupportActionBar();
+        //ActionBar actionBar = getSupportActionBar();
         sessionManager = new SessionManager(this);
         sessionManager.checkLogin();
 
@@ -40,10 +43,10 @@ public class PostLoginActivity extends AppCompatActivity {
         String mUser = user.get(sessionManager.USERNAME);
         String mPassword = user.get(sessionManager.PASSWORD);
 
-        actionBar.setTitle("Bentornato, "+mName);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#980206")));
-        //actionBar.setBackgroundDrawable(new ColorDrawable(R.drawable.defaultcolor));
-
+        //actionBar.setTitle("Bentornato, "+mName);
+        setTextActionBar("Bentornato "+ mName);
+        //actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary2)));
+        setColorActionBar("#232f3e");
 
         bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
@@ -107,4 +110,16 @@ public class PostLoginActivity extends AppCompatActivity {
 
         }
     }
+
+    public void setTextActionBar (String text){
+        actionBar = getSupportActionBar();
+        actionBar.setTitle(text);
+    }
+
+    public void setColorActionBar (String color){
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(color)));
+    }
+
+
 }

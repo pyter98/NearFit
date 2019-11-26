@@ -36,7 +36,7 @@ public class EditUser extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        actionBar.setTitle("Account");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
 
@@ -88,11 +88,8 @@ public class EditUser extends AppCompatActivity {
                                 EditUser.this.finish();
                                 change = true;
                             }
-                            if (user.equals(userAct) && !change){
-                                Toast.makeText(EditUser.this, "Inserisci un nuovo username", Toast.LENGTH_SHORT).show();
-                            }
-                            if(psw.equals(pswAct) && !change){
-                                Toast.makeText(EditUser.this, "Inserisci una nuova password", Toast.LENGTH_SHORT).show();
+                            if (user.equals(userAct) && psw.equals(pswAct) && !change){
+                                Toast.makeText(EditUser.this, "Username e Password attualmente in uso", Toast.LENGTH_SHORT).show();
                             }
 
                         } catch (JSONException e) {
