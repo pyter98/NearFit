@@ -8,6 +8,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
@@ -22,7 +23,9 @@ import android.widget.Button;
 
 
 import com.example.nearfit.MainActivity;
+import com.example.nearfit.OnSwipeTouchListener;
 import com.example.nearfit.R;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class cronometro extends Fragment{
@@ -31,6 +34,7 @@ public class cronometro extends Fragment{
     ChronometerHelper chronometerHelper = new ChronometerHelper();
     private boolean running;
     private long pauseOffset;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,7 +49,7 @@ public class cronometro extends Fragment{
         final FloatingActionButton stop = (FloatingActionButton) view.findViewById(R.id.stop_btn);
         //final ProgressBar progressBar = view.findViewById(R.id.pr_crono);
         //final RotateDrawable rotateDrawable = (RotateDrawable) progressBar.getIndeterminateDrawable();
-
+//        gesture(view);
         stop.hide();
         //progressBar.stopNestedScroll();
         //rotateDrawable.setToDegrees(270);
@@ -123,6 +127,32 @@ public class cronometro extends Fragment{
         pauseOffset = 0;
 
     }
+/*
+    protected void gesture(final View root){
+
+        root.setOnTouchListener(new OnSwipeTouchListener(getContext()){
+            String[] userdetail = ((PostLoginActivity) getActivity()).getUserDetail();
+            String username = userdetail[0];
+            String password = userdetail[1];
+
+            @Override
+            public void onSwipeLeft(){
+                nfc nfc = new nfc(username,password);
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, nfc, "cronometro").addToBackStack(null)
+                        .commit();
+
+            }
+            @Override
+            public void onSwipeRight(){
+                scheda scheda = new scheda();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, scheda, "scheda").addToBackStack(null)
+                        .commit();
+            }
+
+        });
+    }*/
 
 
 }

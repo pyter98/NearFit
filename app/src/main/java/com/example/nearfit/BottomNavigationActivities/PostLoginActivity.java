@@ -4,6 +4,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.biometric.BiometricPrompt;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -16,19 +17,27 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.nearfit.OnSwipeTouchListener;
 import com.example.nearfit.Settings.Impostazioni;
 import com.example.nearfit.R;
 import com.example.nearfit.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.HashMap;
+import java.util.concurrent.Executor;
 
 //TODO 160799; 089820; 980206; 9810FE
 public class PostLoginActivity extends AppCompatActivity {
     ActionBar actionBar;
     SessionManager sessionManager;
     BottomNavigationView bottomNav;
+    private final Executor executor = ContextCompat.getMainExecutor(this);
+    private BiometricPrompt biometricPrompt;
+    private BiometricPrompt.PromptInfo promptInfo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,12 +53,14 @@ public class PostLoginActivity extends AppCompatActivity {
         String mPassword = user.get(sessionManager.PASSWORD);
 
         //actionBar.setTitle("Bentornato, "+mName);
-        setTextActionBar("Bentornato "+ mName);
+        //setTextActionBar("Bentornato "+ mName);
         //actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary2)));
         setColorActionBar("#232f3e");
 
         bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+
 
         //Lancio il primo fragment(nfc)
         if (savedInstanceState == null){
@@ -57,10 +68,11 @@ public class PostLoginActivity extends AppCompatActivity {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.add(R.id.fragment_container, new nfc(mUser,mPassword));
             fragmentTransaction.commit();
+
         }
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+    protected BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -68,9 +80,11 @@ public class PostLoginActivity extends AppCompatActivity {
                     String mUser = user.get(sessionManager.USERNAME);
                     String mPassword = user.get(sessionManager.PASSWORD);
                     Fragment selectedFragment = null;
+
                     switch (menuItem.getItemId()) {
                         case R.id.home:
                             selectedFragment = new nfc(mUser,mPassword);
+
                             break;
                         case R.id.scheda:
                             selectedFragment = new scheda();
@@ -81,6 +95,7 @@ public class PostLoginActivity extends AppCompatActivity {
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();
+
                     return true;
                 }
             };
@@ -121,5 +136,27 @@ public class PostLoginActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(color)));
     }
 
+    public void updateNavigationBarState(int actionId){
+        Menu menu = bottomNav.getMenu();
+
+        for (int i = 0, size = menu.size(); i < size; i++) {
+            MenuItem item = menu.getItem(i);
+            item.setChecked(item.getItemId() == actionId);
+        }
+    }
+
+    protected String[] getUserDetail() {
+
+        String[] userdetail = new String[2];
+        HashMap<String, String> user = sessionManager.getUserDetail();
+        String mUser = user.get(sessionManager.USERNAME);
+        String mPassword = user.get(sessionManager.PASSWORD);
+
+        userdetail[0] = mUser;
+        userdetail[1] = mPassword;
+
+        return userdetail;
+
+    }
 
 }

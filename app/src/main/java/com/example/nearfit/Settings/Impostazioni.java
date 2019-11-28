@@ -4,6 +4,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,17 +13,21 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.nearfit.BottomNavigationActivities.PostLoginActivity;
 import com.example.nearfit.R;
 
 public class Impostazioni extends AppCompatActivity {
-
+    ActionBar actionBar;
     String items[] = new String[] {"Account", "Tema", "Info"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_impostazioni);
-        ActionBar actionBar = getSupportActionBar();
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#232f3e")));
         actionBar.setTitle("Impostazioni");
+        //actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("232f3e")));
+
 
         ListView listView = findViewById(R.id.lista);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, items);

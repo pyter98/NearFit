@@ -4,6 +4,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -32,10 +34,13 @@ public class EditUser extends AppCompatActivity {
     private Button btnSave;
     private  boolean change = false;
     private static String URL_EDIT = "https://nearfit.altervista.org/fitness2/edit.php";
+    ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ActionBar actionBar = getSupportActionBar();
+
+        actionBar = getSupportActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#232f3e")));
         actionBar.setTitle("Account");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
