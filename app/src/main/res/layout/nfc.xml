@@ -5,22 +5,255 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BottomNavigationActivities.nfc"
-    android:theme="@style/AppTheme">
+    android:theme="@style/AppTheme"
+    >
 
+    <TableLayout
+        android:id="@+id/tableOrario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="50dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@color/colorPrimary"
+        >
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Giorno"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/colorAccent"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Orario"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/colorAccent"
+
+                />
+
+
+
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Lunedì"
+                android:textStyle="italic"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@color/colorAccent"
+                android:layout_marginBottom="1dp"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="16:00 - 20:00"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@color/colorAccent"
+                android:layout_marginBottom="1dp"
+
+
+                />
+
+
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Martedì"
+                android:textStyle="italic"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@color/colorAccent"
+                android:layout_marginBottom="1dp"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="12:00 - 20:00"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@color/colorAccent"
+                android:layout_marginBottom="1dp"
+
+
+                />
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Mercoledì"
+                android:textStyle="italic"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@color/colorAccent"
+                android:layout_marginBottom="1dp"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="12:00 - 20:00"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@color/colorAccent"
+                android:layout_marginBottom="1dp"
+
+
+                />
+
+
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Giovedì"
+                android:textStyle="italic"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@color/colorAccent"
+                android:layout_marginBottom="1dp"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="12:00 - 20:00"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@color/colorAccent"
+                android:layout_marginBottom="1dp"
+
+
+                />
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Venerdì"
+                android:textStyle="italic"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@color/colorAccent"
+                android:layout_marginBottom="1dp"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="15:00 - 21:00"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@color/colorAccent"
+                android:layout_marginBottom="1dp"
+
+
+                />
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Sabato"
+                android:textStyle="italic"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@color/colorAccent"
+                android:layout_marginBottom="1dp"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="10:00 - 20:00"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@color/colorAccent"
+                android:layout_marginBottom="1dp"
+
+
+                />
+
+
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Domenica"
+                android:textStyle="italic"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@color/colorAccent"
+                android:layout_marginBottom="1dp"
+
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Chiuso"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:background="@color/colorAccent"
+                android:layout_marginBottom="1dp"
+
+
+                />
+
+
+
+        </TableRow>
+
+
+
+
+
+    </TableLayout>
 
     <Button
         android:id="@+id/transfer"
         android:layout_width="276dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="380dp"
-        android:text="Accedi in Palestra"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/buttonsaveedit"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="94dp"
-        />
+        android:layout_marginTop="380dp"
+        android:background="@drawable/buttonsaveedit"
+        android:text="Accedi in Palestra" />
 
 
 </RelativeLayout>

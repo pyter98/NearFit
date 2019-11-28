@@ -79,23 +79,6 @@ public class nfc extends Fragment implements BiometricCallback {
             }
         });
 
-
-
-
-//        gesture(root);
-
-/*
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getActivity(), nfcTransfer.class);
-                i.putExtra("username", username);
-                i.putExtra("password", password);
-                startActivity(i);
-                //getActivity().finish();
-            }
-        });*/
-
         ((PostLoginActivity) getActivity()).setTextActionBar("Home Page");
 
 
@@ -144,7 +127,7 @@ public class nfc extends Fragment implements BiometricCallback {
     public void onAuthenticationSuccessful() {
 
         nfcTransfer();
-        Toast.makeText(getActivity().getApplicationContext(), getString(R.string.biometric_success), Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity().getApplicationContext(), "Accedi in palestra "+ username, Toast.LENGTH_SHORT).show();
     }
 
     @Override

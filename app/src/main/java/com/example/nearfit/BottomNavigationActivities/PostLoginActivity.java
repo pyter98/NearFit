@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.nearfit.Biometric.BiometricCallback;
 import com.example.nearfit.OnSwipeTouchListener;
 import com.example.nearfit.Settings.Impostazioni;
 import com.example.nearfit.R;
@@ -35,9 +36,7 @@ public class PostLoginActivity extends AppCompatActivity {
     ActionBar actionBar;
     SessionManager sessionManager;
     BottomNavigationView bottomNav;
-    private final Executor executor = ContextCompat.getMainExecutor(this);
-    private BiometricPrompt biometricPrompt;
-    private BiometricPrompt.PromptInfo promptInfo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

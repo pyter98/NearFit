@@ -6,5 +6,21 @@
     <string name="tab_text_3">Cronometro</string>
     <string name="title_activity_nfc_transfer">nfcTransfer</string>
 
+    <string name="biometric_failed">Impronta non riconosicuta</string>
+
+    <string name="biometric_title">Verifica Identità</string>
+    <string name="biometric_subtitle"></string>
+    <string name="biometric_description">Appoggia il dito sul tasto Home per verificare la tua identità e accedere alla schermata NFC</string>
+    <string name="biometric_negative_button_text">ANNULLA</string>
+
+
+    <string name="biometric_error_sdk_not_supported">Versione Sdk non supportata</string>
+    <string name="biometric_error_hardware_not_supported">Il dispositivo non supporta la biometria</string>
+    <string name="biometric_error_fingerprint_not_available">Impronte non registrate nel dispositivo</string>
+    <string name="biometric_error_permission_not_granted">Permessi non dati dall\'utente</string>
+    <string name="biometric_failure">Impronta non riconosciuta</string>
+    <string name="biometric_cancelled">Verifica annullata</string>
+    <string name="biometric_success">Identità verificata con successo</string>
+
 
 </resources>

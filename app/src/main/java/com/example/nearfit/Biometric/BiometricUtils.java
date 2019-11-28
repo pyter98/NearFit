@@ -1,4 +1,4 @@
-package com.example.nearfit;
+package com.example.nearfit.Biometric;
 
 import android.Manifest;
 import android.content.Context;
