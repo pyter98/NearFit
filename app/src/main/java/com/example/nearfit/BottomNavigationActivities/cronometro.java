@@ -1,6 +1,7 @@
 package com.example.nearfit.BottomNavigationActivities;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.graphics.drawable.RotateDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,12 +29,16 @@ import com.example.nearfit.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class cronometro extends Fragment{
 //TODO Notifica
     Chronometer chronometer;
     ChronometerHelper chronometerHelper = new ChronometerHelper();
     private boolean running;
     private long pauseOffset;
+    private  FloatingActionButton start, clear, riprendi, stop;
+    private GifImageView gif;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,20 +48,24 @@ public class cronometro extends Fragment{
 
         ((PostLoginActivity) getActivity()).setTextActionBar("Cronometro");
 
-        final FloatingActionButton start = (FloatingActionButton) view.findViewById(R.id.start_btn);
-        final FloatingActionButton clear = view.findViewById(R.id.clear_btn);
-        final FloatingActionButton riprendi = (FloatingActionButton) view.findViewById(R.id.resume_btn);
-        final FloatingActionButton stop = (FloatingActionButton) view.findViewById(R.id.stop_btn);
-        //final ProgressBar progressBar = view.findViewById(R.id.pr_crono);
-        //final RotateDrawable rotateDrawable = (RotateDrawable) progressBar.getIndeterminateDrawable();
-//        gesture(view);
+        start = view.findViewById(R.id.start_btn);
+        clear = view.findViewById(R.id.clear_btn);
+        riprendi =  view.findViewById(R.id.resume_btn);
+        stop = view.findViewById(R.id.stop_btn);
+
         stop.hide();
+
+        gif = view.findViewById(R.id.gif);
         //progressBar.stopNestedScroll();
         //rotateDrawable.setToDegrees(270);
+
+
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                chronometer.setTextColor(Color.parseColor("#000000"));
+                gif.setVisibility(View.VISIBLE);
                 startStopWatch();
                 stop.show();
                 start.hide();
@@ -68,18 +77,24 @@ public class cronometro extends Fragment{
         riprendi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                chronometer.setTextColor(Color.parseColor("#000000"));
                 startStopWatch();
                 stop.show();
                 riprendi.hide();
+                gif.setVisibility(View.VISIBLE);
+
             }
         });
 
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                chronometer.setTextColor(Color.parseColor("#9e0808"));
                 stopStopWatch();
                 stop.hide();
                 riprendi.show();
+                gif.setVisibility(View.GONE);
+
                 //rotateDrawable.setToDegrees(rotateDrawable.getFromDegrees());
 
             }
@@ -89,11 +104,14 @@ public class cronometro extends Fragment{
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                chronometer.setTextColor(Color.parseColor("#000000"));
                 clearWatch();
                 stop.hide();
                 start.show();
                 clear.hide();
                 riprendi.hide();
+                gif.setVisibility(View.GONE);
+
                 //rotateDrawable.setToDegrees(270);
 
             }
@@ -122,9 +140,12 @@ public class cronometro extends Fragment{
 
     private void clearWatch() {
         long startTime = SystemClock.elapsedRealtime();
+        chronometer.stop();
         chronometerHelper.setStartTime(startTime);
         chronometer.setBase(startTime);
         pauseOffset = 0;
+        running = false;
+
 
     }
 /*

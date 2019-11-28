@@ -6,7 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BottomNavigationActivities.cronometro"
-    android:theme="@style/AppTheme">
+    android:theme="@style/AppTheme"
+    android:background="#fff">
 
 
 
@@ -16,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/simpleChronometer"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="180dp"
         android:src="@drawable/ic_play_arrow_black_24dp"
         android:visibility="visible"
         android:backgroundTint="@color/colorPrimary"
@@ -56,17 +57,6 @@
         android:backgroundTint="@color/colorPrimary"
         />
 
-    <Chronometer
-        android:id="@+id/simpleChronometer"
-        android:layout_width="95dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="206dp"
-        android:layout_marginEnd="104dp"
-        android:textSize="36sp" />
-
     <!--ProgressBar
         android:id="@+id/pr_crono"
         android:layout_width="307dp"
@@ -76,5 +66,25 @@
         android:layout_marginTop="70dp"
         android:indeterminateDrawable="@drawable/progress_cronometro"
         android:visibility="visible" /-->
+
+    <Chronometer
+        android:id="@+id/simpleChronometer"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="127dp"
+        android:layout_marginEnd="104dp"
+        android:textSize="36sp" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gif"
+        android:layout_width="117dp"
+        android:layout_height="72dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="238dp"
+        android:src="@drawable/tenor"
+        android:visibility="gone"/>
 
 </RelativeLayout>

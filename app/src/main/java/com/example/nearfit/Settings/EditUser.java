@@ -27,7 +27,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
+//TODO Controllo se username o password sono vuoti
 public class EditUser extends AppCompatActivity {
     SessionManager sessionManager;
     private TextView username, password;
@@ -41,7 +41,7 @@ public class EditUser extends AppCompatActivity {
 
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#232f3e")));
-        actionBar.setTitle("Account");
+        actionBar.setTitle("Modifica Credenziali");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
 
