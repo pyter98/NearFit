@@ -1,45 +1,22 @@
 package com.example.nearfit.BottomNavigationActivities;
 
-import android.app.ActionBar;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.view.ActionProvider;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.biometric.BiometricPrompt;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
 import androidx.fragment.app.Fragment;
 
 import com.example.nearfit.Biometric.BiometricCallback;
 import com.example.nearfit.Biometric.BiometricManager;
 
-import com.example.nearfit.BottomNavigationActivities.PostLoginActivity;
 
-
-import com.example.nearfit.OnSwipeTouchListener;
 import com.example.nearfit.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
 import android.widget.Toast;
-
-import java.util.concurrent.Executor;
 
 
 public class nfc extends Fragment implements BiometricCallback {
@@ -64,9 +41,6 @@ public class nfc extends Fragment implements BiometricCallback {
             @Override
             public void onClick(View view) {
 
-                /*
-                 *
-                 * */
                 mBiometricManager = new BiometricManager.BiometricBuilder(getContext())
                         .setTitle(getString(R.string.biometric_title))
                         .setSubtitle(getString(R.string.biometric_subtitle))
@@ -80,7 +54,6 @@ public class nfc extends Fragment implements BiometricCallback {
         });
 
         ((PostLoginActivity) getActivity()).setTextActionBar("Home Page");
-
 
         return root;
     }
@@ -141,11 +114,15 @@ public class nfc extends Fragment implements BiometricCallback {
     }
 
     protected void nfcTransfer(){
+
         Intent i = new Intent(getActivity(), nfcTransfer.class);
         i.putExtra("username", username);
         i.putExtra("password", password);
         startActivity(i);
+
+
     }
+
 
 }
 

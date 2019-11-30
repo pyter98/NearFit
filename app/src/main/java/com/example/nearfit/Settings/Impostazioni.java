@@ -11,14 +11,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.example.nearfit.BottomNavigationActivities.PostLoginActivity;
 import com.example.nearfit.R;
 
 public class Impostazioni extends AppCompatActivity {
     ActionBar actionBar;
-    String items[] = new String[] {"Account", "Tema", "Info"};
+    String items[] = new String[] {"Account", "Info"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,13 +39,10 @@ public class Impostazioni extends AppCompatActivity {
                     startActivity(i);
                     //Toast.makeText(Impostazioni.this, "Account", Toast.LENGTH_SHORT).show();
                 }
-                if (items[position].equals("Tema")){
-                    Intent i = new Intent(Impostazioni.this, Theme.class);
-                    startActivity(i);
-                    //Toast.makeText(Impostazioni.this, "Tema", Toast.LENGTH_SHORT).show();
-                }
                 if (items[position].equals("Info")){
-                    Toast.makeText(Impostazioni.this, "Info", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(Impostazioni.this, Info.class);
+                    startActivity(i);
+                    //Toast.makeText(Impostazioni.this, "Info", Toast.LENGTH_SHORT).show();
                 }
             }
         });

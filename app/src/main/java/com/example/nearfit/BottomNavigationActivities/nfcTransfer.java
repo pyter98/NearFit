@@ -39,9 +39,8 @@ public class nfcTransfer extends AppCompatActivity implements CreateNdefMessageC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nfc_transfer);
 
-        back = findViewById(R.id.backbtn);
-
-        back.setOnClickListener(new View.OnClickListener() {
+        back = findViewById(R.id.back_btn);
+         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(nfcTransfer.this,PostLoginActivity.class);
@@ -53,7 +52,7 @@ public class nfcTransfer extends AppCompatActivity implements CreateNdefMessageC
         TextView textView = findViewById(R.id.user);
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
 
-        
+
         if (nfcAdapter == null) {
             Toast.makeText(this, "NFC is not available", Toast.LENGTH_LONG).show();
             finish();
@@ -86,5 +85,6 @@ public class nfcTransfer extends AppCompatActivity implements CreateNdefMessageC
     public void onResume() {
         super.onResume();
     }
+
 
 }

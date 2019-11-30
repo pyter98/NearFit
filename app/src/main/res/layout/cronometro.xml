@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".BottomNavigationActivities.cronometro"
     android:theme="@style/AppTheme"
-    android:background="#fff">
+    android:background="#FCFEFC">
 
 
 
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_pause_black_24dp"
-        android:layout_marginTop="399dp"
+        android:layout_marginTop="365dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="80dp"
         android:visibility="gone"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_stop_black_24dp"
         android:visibility="gone"
-        android:layout_marginTop="399dp"
+        android:layout_marginTop="365dp"
         android:layout_marginLeft="80dp"
         android:backgroundTint="@color/colorPrimary"/>
 
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_play_arrow_black_24dp"
         android:visibility="gone"
-        android:layout_marginTop="399dp"
+        android:layout_marginTop="365dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="80dp"
         android:backgroundTint="@color/colorPrimary"
@@ -69,21 +69,22 @@
 
     <Chronometer
         android:id="@+id/simpleChronometer"
-        android:layout_width="95dp"
-        android:layout_height="wrap_content"
+        android:layout_width="310dp"
+        android:layout_height="67dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="127dp"
+        android:layout_marginTop="119dp"
         android:layout_marginEnd="104dp"
+        android:gravity="center"
         android:textSize="36sp" />
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/gif"
         android:layout_width="117dp"
         android:layout_height="72dp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/simpleChronometer"
         android:layout_centerInParent="true"
-        android:layout_marginTop="238dp"
+        android:layout_marginTop="30dp"
         android:src="@drawable/tenor"
         android:visibility="gone"/>
 

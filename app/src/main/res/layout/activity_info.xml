@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Settings.EditUser"
+    android:orientation="horizontal"
+    android:theme="@style/AppTheme">
+
+
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/logoapp"
+        android:layout_marginTop="50dp"
+        android:clickable="true"/>
+
+    <TextView
+        android:id="@+id/sviluppatori"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:drawableLeft="@drawable/ic_develop"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:text="Sviluppatori:"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/Piero"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sviluppatori"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:drawableLeft="@drawable/ic_person"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center"
+        android:text="Pietro Urso"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/Gabriele"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Piero"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/ic_person"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center"
+        android:text="Gabriele Maiorano"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/Ernesto"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Gabriele"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/ic_person"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center"
+        android:text="Ernesto Petroni"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/Riccardo"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Ernesto"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:drawableLeft="@drawable/ic_person"
+        android:fontFamily="sans-serif-smallcaps"
+        android:gravity="center"
+        android:text="Riccardo Santovito"
+        android:textSize="22sp" />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/egg"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/egg"
+        android:visibility="gone"/>
+
+
+
+
+
+</RelativeLayout>

@@ -1,11 +1,8 @@
 package com.example.nearfit.BottomNavigationActivities;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.biometric.BiometricPrompt;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -14,22 +11,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.nearfit.Biometric.BiometricCallback;
-import com.example.nearfit.OnSwipeTouchListener;
 import com.example.nearfit.Settings.Impostazioni;
 import com.example.nearfit.R;
 import com.example.nearfit.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.HashMap;
-import java.util.concurrent.Executor;
 
 //TODO 160799; 089820; 980206; 9810FE
 public class PostLoginActivity extends AppCompatActivity {

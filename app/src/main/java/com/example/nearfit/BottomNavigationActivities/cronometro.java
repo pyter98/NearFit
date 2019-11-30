@@ -1,32 +1,17 @@
 package com.example.nearfit.BottomNavigationActivities;
 
-import android.app.ProgressDialog;
 import android.graphics.Color;
-import android.graphics.drawable.RotateDrawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.os.Handler;
 import android.os.SystemClock;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Chronometer;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.fragment.app.Fragment;
-import android.widget.Button;
 
 
-import com.example.nearfit.MainActivity;
-import com.example.nearfit.OnSwipeTouchListener;
 import com.example.nearfit.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import pl.droidsonroids.gif.GifImageView;
@@ -148,32 +133,5 @@ public class cronometro extends Fragment{
 
 
     }
-/*
-    protected void gesture(final View root){
-
-        root.setOnTouchListener(new OnSwipeTouchListener(getContext()){
-            String[] userdetail = ((PostLoginActivity) getActivity()).getUserDetail();
-            String username = userdetail[0];
-            String password = userdetail[1];
-
-            @Override
-            public void onSwipeLeft(){
-                nfc nfc = new nfc(username,password);
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, nfc, "cronometro").addToBackStack(null)
-                        .commit();
-
-            }
-            @Override
-            public void onSwipeRight(){
-                scheda scheda = new scheda();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, scheda, "scheda").addToBackStack(null)
-                        .commit();
-            }
-
-        });
-    }*/
-
 
 }

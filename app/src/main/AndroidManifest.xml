@@ -17,9 +17,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Settings.EditUser"></activity>
-        <activity android:name=".Settings.Theme" />
+        android:theme="@style/AppTheme"
+        android:windowSoftInputMode="adjustResize">
+        <activity android:name=".Settings.Info">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Settings.Impostazioni" />
+        </activity>
+        <activity android:name=".Settings.EditUser" />
         <activity android:name=".Settings.Impostazioni" />
         <activity
             android:name=".BottomNavigationActivities.nfcTransfer"

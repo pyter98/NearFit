@@ -35,7 +35,6 @@ public class EditUser extends AppCompatActivity {
     private  boolean change = false;
     private static String URL_EDIT = "https://nearfit.altervista.org/fitness2/edit.php";
     ActionBar actionBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -61,6 +60,7 @@ public class EditUser extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SaveDetail();
+
             }
         });
 
@@ -125,5 +125,7 @@ public class EditUser extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+
 
 }
