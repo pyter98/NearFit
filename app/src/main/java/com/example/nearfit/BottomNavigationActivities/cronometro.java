@@ -19,7 +19,6 @@ import pl.droidsonroids.gif.GifImageView;
 public class cronometro extends Fragment{
 //TODO Notifica
     Chronometer chronometer;
-    ChronometerHelper chronometerHelper = new ChronometerHelper();
     private boolean running;
     private long pauseOffset;
     private  FloatingActionButton start, clear, riprendi, stop;
@@ -41,10 +40,6 @@ public class cronometro extends Fragment{
         stop.hide();
 
         gif = view.findViewById(R.id.gif);
-        //progressBar.stopNestedScroll();
-        //rotateDrawable.setToDegrees(270);
-
-
 
         start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,9 +91,6 @@ public class cronometro extends Fragment{
                 clear.hide();
                 riprendi.hide();
                 gif.setVisibility(View.GONE);
-
-                //rotateDrawable.setToDegrees(270);
-
             }
         });
         return view;
@@ -126,7 +118,6 @@ public class cronometro extends Fragment{
     private void clearWatch() {
         long startTime = SystemClock.elapsedRealtime();
         chronometer.stop();
-        chronometerHelper.setStartTime(startTime);
         chronometer.setBase(startTime);
         pauseOffset = 0;
         running = false;

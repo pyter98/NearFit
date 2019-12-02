@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 
 import com.example.nearfit.BottomNavigationActivities.PostLoginActivity;
-import com.example.nearfit.BottomNavigationActivities.nfc;
 
 import java.util.HashMap;
 

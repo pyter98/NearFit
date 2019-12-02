@@ -19,6 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustResize">
+        <activity android:name=".BottomNavigationActivities.Home_nfc.NfcTransfer"></activity>
         <activity android:name=".Settings.Info">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -26,10 +27,6 @@
         </activity>
         <activity android:name=".Settings.EditUser" />
         <activity android:name=".Settings.Impostazioni" />
-        <activity
-            android:name=".BottomNavigationActivities.nfcTransfer"
-            android:label="@string/title_activity_nfc_transfer"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".BottomNavigationActivities.PostLoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

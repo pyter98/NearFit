@@ -27,7 +27,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-//TODO Controllo se username o password sono vuoti
+
 public class EditUser extends AppCompatActivity {
     SessionManager sessionManager;
     private TextView username, password;
@@ -35,12 +35,17 @@ public class EditUser extends AppCompatActivity {
     private  boolean change = false;
     private static String URL_EDIT = "https://nearfit.altervista.org/fitness2/edit.php";
     ActionBar actionBar;
+    HashMap<String,String> u;
+    String userAct, pswAct, id, name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        //Set Action bar
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#232f3e")));
         actionBar.setTitle("Modifica Credenziali");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
 
@@ -48,13 +53,16 @@ public class EditUser extends AppCompatActivity {
         password = findViewById(R.id.editPsw);
         btnSave = findViewById(R.id.btn_edit);
 
+        //Acquisisco dati utente dalla classe SessionManager()
         sessionManager = new SessionManager(this);
-        HashMap<String,String> user = sessionManager.getUserDetail();
-        String mUser = user.get(sessionManager.USERNAME);
-        String mPassword = user.get(sessionManager.PASSWORD);
+        u = sessionManager.getUserDetail();
+        userAct = u.get(sessionManager.USERNAME);
+        pswAct = u.get(sessionManager.PASSWORD);
+        id = u.get(sessionManager.ID);
+        name = u.get(sessionManager.NAME);
 
-        username.setText(mUser);
-        password.setText(mPassword);
+        username.setText(userAct);
+        password.setText(pswAct);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,16 +74,11 @@ public class EditUser extends AppCompatActivity {
 
     }
 
+    //Salvo le nuove credenziali dell'utente
     protected void SaveDetail() {
 
-        HashMap<String,String> u = sessionManager.getUserDetail();
-
-        final String user = this.username.getText().toString().trim();
-        final String psw = this.password.getText().toString().trim();
-        final String userAct = u.get(sessionManager.USERNAME);
-        final String pswAct = u.get(sessionManager.PASSWORD);
-        final String id = u.get(sessionManager.ID);
-        final String name = u.get(sessionManager.NAME);
+        final String new_user = this.username.getText().toString().trim();
+        final String new_psw = this.password.getText().toString().trim();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_EDIT,
                 new Response.Listener<String>() {
@@ -84,25 +87,35 @@ public class EditUser extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
-                            if (success.equals("1") && !(user.equals(userAct)) || !(psw.equals(pswAct))) {
+                            if (success.equals("1") && !(new_user.equals(userAct)) || !(new_psw.equals(pswAct))) {
 
-                                Toast.makeText(EditUser.this, "Username e Password modificati correttamente!", Toast.LENGTH_SHORT).show();
-                                sessionManager.createSession(name, user, id, psw);
-                                Intent i = new Intent(EditUser.this, Impostazioni.class);
-                                startActivity(i);
-                                EditUser.this.finish();
-                                change = true;
+                                if (!(new_user.equals("")) && !(new_psw.equals(""))) {
+
+                                    if (new_psw.length()>=8){
+
+                                        Toast.makeText(EditUser.this, "Username e/o Password modificati correttamente!", Toast.LENGTH_SHORT).show();
+                                        sessionManager.createSession(name, new_user, id, new_psw);
+                                        Intent i = new Intent(EditUser.this, Impostazioni.class);
+                                        startActivity(i);
+                                        EditUser.this.finish();
+                                    }
+
+                                    else Toast.makeText(EditUser.this, "La password deve essere almeno di 8 caratteri", Toast.LENGTH_SHORT).show();
+
+                                }
+                                else {
+                                    Toast.makeText(EditUser.this, "Campi vuoti, impossibile aggiornare credenziali", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                            if (user.equals(userAct) && psw.equals(pswAct) && !change){
-                                Toast.makeText(EditUser.this, "Username e Password attualmente in uso", Toast.LENGTH_SHORT).show();
+                            else {
+                                Toast.makeText(EditUser.this, "Username già in uso", Toast.LENGTH_SHORT).show();
+
                             }
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(EditUser.this, "Error "+ e.toString(), Toast.LENGTH_SHORT).show();
-
                         }
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -115,8 +128,8 @@ public class EditUser extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> params = new HashMap<>();
-                params.put("user_name", user);
-                params.put("password", psw);
+                params.put("user_name", new_user);
+                params.put("password", new_psw);
                 params.put("ID",id);
                 return params;
             }
@@ -125,7 +138,4 @@ public class EditUser extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
-
-
 }

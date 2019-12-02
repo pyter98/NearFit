@@ -15,35 +15,34 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.nearfit.BottomNavigationActivities.Home_nfc.nfc;
 import com.example.nearfit.Settings.Impostazioni;
 import com.example.nearfit.R;
 import com.example.nearfit.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.HashMap;
 
-//TODO 160799; 089820; 980206; 9810FE
 public class PostLoginActivity extends AppCompatActivity {
     ActionBar actionBar;
     SessionManager sessionManager;
     BottomNavigationView bottomNav;
+    String mUser, mPassword;
+    HashMap<String,String> user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_login);
 
-        //ActionBar actionBar = getSupportActionBar();
+        //Verifica utente già loggato
         sessionManager = new SessionManager(this);
         sessionManager.checkLogin();
 
-        HashMap<String,String> user = sessionManager.getUserDetail();
-        String mName = user.get(sessionManager.NAME);
-        String mUser = user.get(sessionManager.USERNAME);
-        String mPassword = user.get(sessionManager.PASSWORD);
+        //Acquisisco dalla classe SeessionManager le credenziali
+        user = sessionManager.getUserDetail();
+        mUser = user.get(sessionManager.USERNAME);
+        mPassword = user.get(sessionManager.PASSWORD);
 
-        //actionBar.setTitle("Bentornato, "+mName);
-        //setTextActionBar("Bentornato "+ mName);
-        //actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary2)));
         setColorActionBar("#232f3e");
 
         bottomNav = findViewById(R.id.bottomNav);
@@ -61,13 +60,11 @@ public class PostLoginActivity extends AppCompatActivity {
         }
     }
 
+    //Gestione del Bottom Navigation menu
     protected BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                    HashMap<String,String> user = sessionManager.getUserDetail();
-                    String mUser = user.get(sessionManager.USERNAME);
-                    String mPassword = user.get(sessionManager.PASSWORD);
                     Fragment selectedFragment = null;
 
                     switch (menuItem.getItemId()) {
@@ -115,37 +112,16 @@ public class PostLoginActivity extends AppCompatActivity {
         }
     }
 
+    //Imposto il testo della action bar
     public void setTextActionBar (String text){
         actionBar = getSupportActionBar();
         actionBar.setTitle(text);
     }
 
+    //Imposto colore della action bar
     public void setColorActionBar (String color){
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(color)));
-    }
-
-    public void updateNavigationBarState(int actionId){
-        Menu menu = bottomNav.getMenu();
-
-        for (int i = 0, size = menu.size(); i < size; i++) {
-            MenuItem item = menu.getItem(i);
-            item.setChecked(item.getItemId() == actionId);
-        }
-    }
-
-    protected String[] getUserDetail() {
-
-        String[] userdetail = new String[2];
-        HashMap<String, String> user = sessionManager.getUserDetail();
-        String mUser = user.get(sessionManager.USERNAME);
-        String mPassword = user.get(sessionManager.PASSWORD);
-
-        userdetail[0] = mUser;
-        userdetail[1] = mPassword;
-
-        return userdetail;
-
     }
 
 }

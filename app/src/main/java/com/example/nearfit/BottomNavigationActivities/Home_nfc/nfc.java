@@ -1,4 +1,4 @@
-package com.example.nearfit.BottomNavigationActivities;
+package com.example.nearfit.BottomNavigationActivities.Home_nfc;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +13,7 @@ import com.example.nearfit.Biometric.BiometricCallback;
 import com.example.nearfit.Biometric.BiometricManager;
 
 
+import com.example.nearfit.BottomNavigationActivities.PostLoginActivity;
 import com.example.nearfit.R;
 
 import android.content.Intent;
@@ -25,6 +26,8 @@ public class nfc extends Fragment implements BiometricCallback {
     Button button;
     BiometricManager mBiometricManager;
 
+
+    //Costruttore
     public nfc(String username, String password) {
         this.username = username;
         this.password = password;
@@ -37,6 +40,7 @@ public class nfc extends Fragment implements BiometricCallback {
         final View root = inflater.inflate(R.layout.nfc, container, false);
         button = root.findViewById(R.id.transfer);
 
+        //Click sul tasto 'ACCEDI IN PALESTRA'
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,9 +117,10 @@ public class nfc extends Fragment implements BiometricCallback {
 //        Toast.makeText(getApplicationContext(), errString, Toast.LENGTH_LONG).show();
     }
 
+    //Passaggio credenziali alla classe nfcTransfer
     protected void nfcTransfer(){
 
-        Intent i = new Intent(getActivity(), nfcTransfer.class);
+        Intent i = new Intent(getActivity(), NfcTransfer.class);
         i.putExtra("username", username);
         i.putExtra("password", password);
         startActivity(i);

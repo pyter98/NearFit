@@ -24,8 +24,6 @@ public class Impostazioni extends AppCompatActivity {
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#232f3e")));
         actionBar.setTitle("Impostazioni");
-        //actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("232f3e")));
-
 
         ListView listView = findViewById(R.id.lista);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, items);
@@ -33,16 +31,15 @@ public class Impostazioni extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Toast.makeText(Impostazioni.this, items[position], Toast.LENGTH_SHORT).show();
                 if (items[position].equals("Account")){
+
                     Intent i = new Intent(Impostazioni.this, EditUser.class);
                     startActivity(i);
-                    //Toast.makeText(Impostazioni.this, "Account", Toast.LENGTH_SHORT).show();
                 }
                 if (items[position].equals("Info")){
+
                     Intent i = new Intent(Impostazioni.this, Info.class);
                     startActivity(i);
-                    //Toast.makeText(Impostazioni.this, "Info", Toast.LENGTH_SHORT).show();
                 }
             }
         });

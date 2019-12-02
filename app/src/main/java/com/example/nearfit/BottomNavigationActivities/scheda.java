@@ -19,9 +19,6 @@ public class scheda extends Fragment {
             Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.scheda, container, false);
         ((PostLoginActivity) getActivity()).setTextActionBar("Scheda");
-
-        //gesture(root);
-
         return root;
     }
 }
