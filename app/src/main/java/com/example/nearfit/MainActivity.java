@@ -25,7 +25,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-// TODO animations
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
 
 
-
+        //Verifico sessione attiva
         if (sessionManager.isLoggin()){
             Intent intent = new Intent(MainActivity.this, PostLoginActivity.class);
             intent.putExtra("nfc", R.id.home);
@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Effettuo il login facendo il check delle credenziali sul DB
     private void Login(final String username, final String password){
 
         loading.setVisibility(View.VISIBLE);

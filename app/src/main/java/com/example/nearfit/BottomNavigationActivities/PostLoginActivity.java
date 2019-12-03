@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -23,11 +25,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.HashMap;
 
 public class PostLoginActivity extends AppCompatActivity {
-    ActionBar actionBar;
-    SessionManager sessionManager;
-    BottomNavigationView bottomNav;
-    String mUser, mPassword;
-    HashMap<String,String> user;
+    private ActionBar actionBar;
+    protected SessionManager sessionManager;
+    private BottomNavigationView bottomNav;
+    protected String mUser, mPassword;
+    protected HashMap<String,String> user;
+    private long backPressedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +125,19 @@ public class PostLoginActivity extends AppCompatActivity {
     public void setColorActionBar (String color){
         actionBar = getSupportActionBar();
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(color)));
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()){
+            super.onBackPressed();
+            return;
+        }
+        else {
+            Toast.makeText(PostLoginActivity.this, "Premi ancora per uscire",Toast.LENGTH_SHORT).show();
+        }
+
+        backPressedTime = System.currentTimeMillis();
     }
 
 }

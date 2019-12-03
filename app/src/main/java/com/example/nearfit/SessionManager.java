@@ -9,6 +9,9 @@ import com.example.nearfit.BottomNavigationActivities.PostLoginActivity;
 
 import java.util.HashMap;
 
+/*
+Questa classe si occupa del mantenimento della sessione di un utente loggato.
+ */
 public class SessionManager {
 
     SharedPreferences sharedPreferences;

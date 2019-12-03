@@ -32,6 +32,7 @@ public class cronometro extends Fragment{
 
         ((PostLoginActivity) getActivity()).setTextActionBar("Cronometro");
 
+        //Inizializzo i bottoni
         start = view.findViewById(R.id.start_btn);
         clear = view.findViewById(R.id.clear_btn);
         riprendi =  view.findViewById(R.id.resume_btn);
@@ -41,6 +42,7 @@ public class cronometro extends Fragment{
 
         gif = view.findViewById(R.id.gif);
 
+        //Pulsante start
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +56,7 @@ public class cronometro extends Fragment{
             }
         });
 
+        //Pulstante riprendi
         riprendi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +68,7 @@ public class cronometro extends Fragment{
 
             }
         });
-
+        //Pulsante stop
         stop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +83,7 @@ public class cronometro extends Fragment{
             }
         });
 
-
+        //Pulsante azzera
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +98,7 @@ public class cronometro extends Fragment{
         });
         return view;
     }
-
+    //Metodi per la gestione del cronometro
     private void startStopWatch() {
 
         if (!running) {
