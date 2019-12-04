@@ -107,7 +107,6 @@ public class PostLoginActivity extends AppCompatActivity {
             case R.id.impostazioni:
                 Intent i = new Intent(PostLoginActivity.this, Impostazioni.class);
                 startActivity(i);
-                //Toast.makeText(PostLoginActivity.this, "Impostazioni",Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
