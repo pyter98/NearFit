@@ -17,20 +17,34 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.nearfit.BottomNavigationActivities.Home_nfc.nfc;
 import com.example.nearfit.Settings.Impostazioni;
 import com.example.nearfit.R;
 import com.example.nearfit.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
+import java.util.Map;
 
 public class PostLoginActivity extends AppCompatActivity {
     private ActionBar actionBar;
     protected SessionManager sessionManager;
     private BottomNavigationView bottomNav;
-    protected String mUser, mPassword;
+    protected String mUser, mPassword, id;
     protected HashMap<String,String> user;
     private long backPressedTime;
+    private String v;
+    private static String URL_SCHEDA = "https://nearfit.altervista.org/fitness2/infoscheda.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +59,7 @@ public class PostLoginActivity extends AppCompatActivity {
         user = sessionManager.getUserDetail();
         mUser = user.get(sessionManager.USERNAME);
         mPassword = user.get(sessionManager.PASSWORD);
+        id = user.get(sessionManager.ID);
 
         setColorActionBar("#232f3e");
 
@@ -61,6 +76,8 @@ public class PostLoginActivity extends AppCompatActivity {
             fragmentTransaction.commit();
 
         }
+
+        v = ImpostaGiorni();
     }
 
     //Gestione del Bottom Navigation menu
@@ -139,4 +156,48 @@ public class PostLoginActivity extends AppCompatActivity {
         backPressedTime = System.currentTimeMillis();
     }
 
+    protected String ImpostaGiorni() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SCHEDA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            String g = jsonObject.getString("giorni");
+                            //Log.e("PARAMETRI", jsonObject.toString());
+                            if (success.equals("1")) {
+                                setV(g);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(PostLoginActivity.this, "Error "+ e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(PostLoginActivity.this, "Error "+ error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("user_name", mUser);
+                params.put("password", mPassword);
+                params.put("ID",id);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(PostLoginActivity.this);
+        requestQueue.add(stringRequest);
+        return v;
+    }
+
+    public void setV(String v) {
+        this.v = v;
+    }
 }
