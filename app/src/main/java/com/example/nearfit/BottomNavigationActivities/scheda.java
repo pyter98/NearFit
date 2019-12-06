@@ -1,14 +1,20 @@
 package com.example.nearfit.BottomNavigationActivities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +53,9 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
     private List<String> spinnerArray;
     private String v;
     private String text;
+    TableLayout table;
+    TableRow tr;
+    private TextView r1,r2,r3,r4,r5;
     private static String URL_SCHEDA = "https://nearfit.altervista.org/fitness2/seleziona_giorno.php";
 
 
@@ -76,7 +85,12 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-
+         table = root.findViewById(R.id.schedaTab);
+         table.setColumnStretchable(0, true);
+        table.setColumnStretchable(1,true);
+        table.setColumnStretchable(2,true);
+        table.setColumnStretchable(3,true);
+         table.setColumnStretchable(4,true);
 
         return root;
     }
@@ -154,6 +168,7 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
 
 
                                     }
+                                    init(esercizi,ripetizioni,recupero,metodologia,serie);
 
 
                                 }
@@ -192,6 +207,55 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
 
     public String getText() {
         return text;
+    }
+
+    public void init(String[] ese, String[] rip, String[] recup, String[] met, String[] ser){
+
+        /*for (int i = 0; i <2; i++) {
+
+            TableRow row= new TableRow(getContext());
+            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+            row.setLayoutParams(lp);
+
+            ll.addView(row,i);
+        }*/
+
+        for (int i=0; i<ese.length; i++){
+        tr= new TableRow(getContext());
+
+        r1 = new TextView(getContext());
+        r2 = new TextView(getContext());
+        r3 = new TextView(getContext());
+        r4 = new TextView(getContext());
+        r5 = new TextView(getContext());
+
+        r1.setText(ese[i]);
+        r1.setWidth(130);
+        r1.setGravity(Gravity.CENTER);
+
+        r2.setText(ser[i]);
+        r2.setGravity(Gravity.CENTER);
+
+        r3.setText(rip[i]);
+        r3.setGravity(Gravity.CENTER);
+
+        r4.setText(recup[i]);
+        r4.setGravity(Gravity.CENTER);
+
+        r5.setText(met[i]);
+        r5.setGravity(Gravity.CENTER);
+
+        tr.addView(r1);
+        tr.addView(r2);
+        tr.addView(r3);
+        tr.addView(r4);
+        tr.addView(r5);
+
+        table.addView(tr);
+
+        }
+
+
     }
 }
 
