@@ -17,4 +17,68 @@
         android:layout_marginTop="70dp"
 
         />
+
+    <TableLayout
+        android:id="@+id/schedaTab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="50dp"
+        android:layout_marginHorizontal="10dp"
+        android:background="#9c0909"
+        android:layout_below="@id/spinner"
+        android:layout_marginTop="100dp"
+        >
+    <TableRow>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Esercizio"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="@color/colorAccent"
+            />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Serie"
+            android:textColor="@color/colorAccent"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="Rip"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="@color/colorAccent"
+            />
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="Recup"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="@color/colorAccent"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Tecnica"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="@color/colorAccent"
+            />
+    </TableRow>
+    </TableLayout>
 </RelativeLayout>

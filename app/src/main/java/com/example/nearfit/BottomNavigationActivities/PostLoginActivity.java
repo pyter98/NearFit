@@ -43,7 +43,7 @@ public class PostLoginActivity extends AppCompatActivity {
     protected String mUser, mPassword, id;
     protected HashMap<String,String> user;
     private long backPressedTime;
-    private String v;
+    private String days;
     private static String URL_SCHEDA = "https://nearfit.altervista.org/fitness2/infoscheda.php";
 
     @Override
@@ -77,7 +77,7 @@ public class PostLoginActivity extends AppCompatActivity {
 
         }
 
-        v = ImpostaGiorni();
+        days = ImpostaGiorni();
     }
 
     //Gestione del Bottom Navigation menu
@@ -167,7 +167,7 @@ public class PostLoginActivity extends AppCompatActivity {
                             String g = jsonObject.getString("giorni");
                             //Log.e("PARAMETRI", jsonObject.toString());
                             if (success.equals("1")) {
-                                setV(g);
+                                setDays(g);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -194,10 +194,15 @@ public class PostLoginActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(PostLoginActivity.this);
         requestQueue.add(stringRequest);
-        return v;
+        return days;
     }
 
-    public void setV(String v) {
-        this.v = v;
+    public void setDays(String days) {
+        this.days = days;
+    }
+
+    public String getDays() {
+        return days;
     }
 }
+
