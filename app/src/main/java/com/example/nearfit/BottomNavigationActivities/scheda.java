@@ -98,33 +98,8 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         text = parent.getItemAtPosition(position).toString();
-        if (text.equals("Giorno 1")) {
-            setText(text);
-            setTable();
-            Toast.makeText(parent.getContext(), "Porco", Toast.LENGTH_SHORT).show();
-
-
-        }
-        if (text.equals("Giorno 2")) {
-            setTable();
-
-
-        }
-        if (text.equals("Giorno 3")) {
-            //
-        }
-        if (text.equals("Giorno 4")) {
-            //
-        }
-        if (text.equals("Giorno 5")) {
-            //
-        }
-        if (text.equals("Giorno 6")) {
-            //
-        }
-        if (text.equals("Giorno 7")) {
-            //
-        }
+        clearTable();
+        setTable();
     }
 
     @Override
@@ -168,7 +143,7 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
 
 
                                     }
-                                    init(esercizi,ripetizioni,recupero,metodologia,serie);
+                                    setRowsTable(esercizi,ripetizioni,recupero,metodologia,serie);
 
 
                                 }
@@ -201,24 +176,11 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
 
         }
 
-    public void setText(String text) {
-        this.text = text;
-    }
-
     public String getText() {
         return text;
     }
 
-    public void init(String[] ese, String[] rip, String[] recup, String[] met, String[] ser){
-
-        /*for (int i = 0; i <2; i++) {
-
-            TableRow row= new TableRow(getContext());
-            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-            row.setLayoutParams(lp);
-
-            ll.addView(row,i);
-        }*/
+    public void setRowsTable(String[] ese, String[] rip, String[] recup, String[] met, String[] ser){
 
         for (int i=0; i<ese.length; i++){
         tr= new TableRow(getContext());
@@ -229,8 +191,8 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
         r4 = new TextView(getContext());
         r5 = new TextView(getContext());
 
-        r1.setText(ese[i]);
-        r1.setWidth(130);
+        r1.setText(ese[i]+"\n");
+        r1.setWidth(200);
         r1.setGravity(Gravity.CENTER);
 
         r2.setText(ser[i]);
@@ -251,11 +213,18 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
         tr.addView(r4);
         tr.addView(r5);
 
+        tr.setBackgroundResource(R.color.colorAccent);
         table.addView(tr);
 
         }
+    }
 
+    public void clearTable(){
 
+       int count = table.getChildCount();
+       if (count > 1){
+           table.removeViews(1,count-1);
+       }
     }
 }
 

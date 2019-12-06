@@ -78,6 +78,7 @@ public class PostLoginActivity extends AppCompatActivity {
         }
 
         days = ImpostaGiorni();
+
     }
 
     //Gestione del Bottom Navigation menu

@@ -30,7 +30,7 @@
         >
     <TableRow>
         <TextView
-            android:layout_width="50dp"
+            android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="Esercizio"
             android:textStyle="bold"
