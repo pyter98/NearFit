@@ -1,6 +1,7 @@
 package com.example.nearfit.BottomNavigationActivities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,6 +33,7 @@ import com.example.nearfit.R;
 import com.example.nearfit.SessionManager;
 import com.example.nearfit.Settings.EditUser;
 import com.example.nearfit.Settings.Impostazioni;
+import com.example.nearfit.Widget.MaterialProgressBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
@@ -49,14 +51,13 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
     private Spinner spinner;
     protected SessionManager sessionManager;
     protected HashMap<String, String> u;
-    private String userAct, pswAct, id;
+    private String userAct, pswAct, id, days, text;
     private List<String> spinnerArray;
-    private String v;
-    private String text;
-    TableLayout table;
-    TableRow tr;
-    private TextView r1,r2,r3,r4,r5;
+    private TableLayout table;
+    private TableRow tr;
+    private TextView r1,r2,r3,r4,r5, messaggio;
     private static String URL_SCHEDA = "https://nearfit.altervista.org/fitness2/seleziona_giorno.php";
+    MaterialProgressBar materialProgressBar;
 
 
     @Override
@@ -65,32 +66,62 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
             Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.scheda, container, false);
         ((PostLoginActivity) getActivity()).setTextActionBar("Scheda");
-        spinner = root.findViewById(R.id.spinner);
 
+        messaggio = root.findViewById(R.id.text_giorno);
+        spinner = root.findViewById(R.id.spinner);
+        materialProgressBar = root.findViewById(R.id.progress);
         sessionManager = new SessionManager(getContext());
         u = sessionManager.getUserDetail();
         userAct = u.get(sessionManager.USERNAME);
         pswAct = u.get(sessionManager.PASSWORD);
         id = u.get(sessionManager.ID);
-        v = ((PostLoginActivity) getActivity()).getDays();
+
+        days = ((PostLoginActivity) getActivity()).getDays();
+
         spinnerArray = new ArrayList<String>();
-        int i = Integer.parseInt(v);
+        int i = Integer.parseInt(days);
+        spinnerArray.add("Seleziona Giorno");
+
         for (int n = 1; n <= i; n++) {
             spinnerArray.add("Giorno " + n);
-
         }
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                getContext(), android.R.layout.simple_spinner_item, spinnerArray);
+                getContext(), R.layout.color_spinner_first, spinnerArray){
+
+            @Override
+            public boolean isEnabled(int position){
+                if(position == 0) return false;
+                else return true;
+            }
+
+            @Override
+            public View getDropDownView(int position, View convertView,
+                                        ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+                if(position == 0){
+                    tv.setTextColor(Color.GRAY);
+                }
+                else {
+                    tv.setTextColor(Color.BLACK);
+                }
+                return view;
+            }
+        };
+        //
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
 
-         table = root.findViewById(R.id.schedaTab);
-         table.setColumnStretchable(0, true);
+        table = root.findViewById(R.id.schedaTab);
+        table.setColumnStretchable(0, true);
         table.setColumnStretchable(1,true);
         table.setColumnStretchable(2,true);
         table.setColumnStretchable(3,true);
-         table.setColumnStretchable(4,true);
+        table.setColumnStretchable(4,true);
+
 
         return root;
     }
@@ -99,7 +130,13 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         text = parent.getItemAtPosition(position).toString();
         clearTable();
-        setTable();
+        if (position>0){
+            messaggio.setVisibility(View.GONE);
+            setTable();
+            table.setVisibility(View.VISIBLE);
+            materialProgressBar.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
@@ -107,7 +144,7 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
 
     }
 
-    public void setTable() {
+    private void setTable() {
             StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SCHEDA,
                     new Response.Listener<String>() {
                         @Override
@@ -180,7 +217,7 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
         return text;
     }
 
-    public void setRowsTable(String[] ese, String[] rip, String[] recup, String[] met, String[] ser){
+    private void setRowsTable(String[] ese, String[] rip, String[] recup, String[] met, String[] ser){
 
         for (int i=0; i<ese.length; i++){
         tr= new TableRow(getContext());
@@ -217,9 +254,11 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
         table.addView(tr);
 
         }
+        materialProgressBar.setVisibility(View.GONE);
+
     }
 
-    public void clearTable(){
+    private void clearTable(){
 
        int count = table.getChildCount();
        if (count > 1){

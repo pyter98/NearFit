@@ -14,10 +14,16 @@
         android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="15dp"
 
         />
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none"
+        android:layout_weight="1"
+        android:layout_below="@+id/spinner">
     <TableLayout
         android:id="@+id/schedaTab"
         android:layout_width="match_parent"
@@ -26,7 +32,8 @@
         android:layout_marginHorizontal="10dp"
         android:background="#9c0909"
         android:layout_below="@id/spinner"
-        android:layout_marginTop="100dp"
+
+        android:visibility="gone"
         >
     <TableRow>
         <TextView
@@ -81,4 +88,33 @@
             />
     </TableRow>
     </TableLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/text_giorno"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:text="Seleziona il giorno desiderato per visualizzare la scheda"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textColor="@color/colorPrimaryDark2"
+        android:textStyle="bold"
+        />
+
+    <com.example.nearfit.Widget.MaterialProgressBar
+        android:id="@+id/progress"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:duration="2000"
+        app:progressColour="#9c0909"
+        app:backgroundColour="@color/colorAccent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+
+        />
+
 </RelativeLayout>

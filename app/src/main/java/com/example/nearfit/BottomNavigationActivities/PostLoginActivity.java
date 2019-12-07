@@ -13,8 +13,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -30,6 +35,7 @@ import com.example.nearfit.R;
 import com.example.nearfit.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -76,9 +82,7 @@ public class PostLoginActivity extends AppCompatActivity {
             fragmentTransaction.commit();
 
         }
-
         days = ImpostaGiorni();
-
     }
 
     //Gestione del Bottom Navigation menu
