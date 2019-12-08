@@ -83,6 +83,6 @@ public class Info extends AppCompatActivity {
                 startActivity(intent);
                 Info.this.finish();
             }
-        },6000);
+        },5000);
     }
 }

@@ -23,14 +23,16 @@ import android.widget.Toast;
 public class nfc extends Fragment implements BiometricCallback {
     public String username;
     public String password;
+    public String name;
     Button button;
     BiometricManager mBiometricManager;
 
 
     //Costruttore
-    public nfc(String username, String password) {
+    public nfc(String username, String password, String name) {
         this.username = username;
         this.password = password;
+        this.name = name;
     }
 
     @Override
@@ -104,7 +106,7 @@ public class nfc extends Fragment implements BiometricCallback {
     public void onAuthenticationSuccessful() {
 
         nfcTransfer();
-        Toast.makeText(getActivity().getApplicationContext(), "Accedi in palestra "+ username, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity().getApplicationContext(), "Accedi in palestra "+ name, Toast.LENGTH_SHORT).show();
     }
 
     @Override

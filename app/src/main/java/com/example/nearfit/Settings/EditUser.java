@@ -34,7 +34,6 @@ public class EditUser extends AppCompatActivity {
     private Button btnSave;
     private  boolean change = false;
     private static String URL_EDIT = "https://nearfit.altervista.org/fitness2/edit.php";
-    ActionBar actionBar;
     HashMap<String,String> u;
     String userAct, pswAct, id, name;
 
@@ -42,9 +41,10 @@ public class EditUser extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         //Set Action bar
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#232f3e")));
-        actionBar.setTitle("Modifica Credenziali");
+        assert getSupportActionBar() != null;   //null check
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#232f3e")));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
+        getSupportActionBar().setTitle("Modifica Credenziali");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
@@ -72,6 +72,11 @@ public class EditUser extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        this.finish();
+        return true;
     }
 
     //Salvo le nuove credenziali dell'utente

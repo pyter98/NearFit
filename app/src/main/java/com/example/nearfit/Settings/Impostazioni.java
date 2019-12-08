@@ -15,15 +15,16 @@ import android.widget.ListView;
 import com.example.nearfit.R;
 
 public class Impostazioni extends AppCompatActivity {
-    ActionBar actionBar;
-    String items[] = new String[] {"Account", "Info"};
+    private String items[] = new String[] {"Account", "Info"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_impostazioni);
-        actionBar = getSupportActionBar();
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#232f3e")));
-        actionBar.setTitle("Impostazioni");
+
+        assert getSupportActionBar() != null;   //null check
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#232f3e")));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);   //show back button
+        getSupportActionBar().setTitle("Impostazioni");
 
         ListView listView = findViewById(R.id.lista);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, items);
@@ -43,5 +44,10 @@ public class Impostazioni extends AppCompatActivity {
                 }
             }
         });
+    }
+    @Override
+    public boolean onSupportNavigateUp(){
+        this.finish();
+        return true;
     }
 }

@@ -46,7 +46,7 @@ public class PostLoginActivity extends AppCompatActivity {
     private ActionBar actionBar;
     protected SessionManager sessionManager;
     private BottomNavigationView bottomNav;
-    protected String mUser, mPassword, id;
+    protected String mUser, mPassword, id, mName;
     protected HashMap<String,String> user;
     private long backPressedTime;
     private String days;
@@ -66,6 +66,7 @@ public class PostLoginActivity extends AppCompatActivity {
         mUser = user.get(sessionManager.USERNAME);
         mPassword = user.get(sessionManager.PASSWORD);
         id = user.get(sessionManager.ID);
+        mName = user.get(sessionManager.NAME);
 
         setColorActionBar("#232f3e");
 
@@ -78,7 +79,7 @@ public class PostLoginActivity extends AppCompatActivity {
         if (savedInstanceState == null){
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.fragment_container, new nfc(mUser,mPassword));
+            fragmentTransaction.add(R.id.fragment_container, new nfc(mUser,mPassword,mName));
             fragmentTransaction.commit();
 
         }
@@ -94,7 +95,7 @@ public class PostLoginActivity extends AppCompatActivity {
 
                     switch (menuItem.getItemId()) {
                         case R.id.home:
-                            selectedFragment = new nfc(mUser,mPassword);
+                            selectedFragment = new nfc(mUser,mPassword, mName);
 
                             break;
                         case R.id.scheda:
@@ -123,8 +124,7 @@ public class PostLoginActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id){
             case R.id.action_logout:
-                Toast.makeText(PostLoginActivity.this, "Logout...",Toast.LENGTH_SHORT).show();
-                sessionManager.logout();
+                showPopup();
                 return true;
             case R.id.impostazioni:
                 Intent i = new Intent(PostLoginActivity.this, Impostazioni.class);
@@ -208,6 +208,28 @@ public class PostLoginActivity extends AppCompatActivity {
 
     public String getDays() {
         return days;
+    }
+
+    private void showPopup() {
+        AlertDialog.Builder alert = new AlertDialog.Builder(PostLoginActivity.this);
+        alert.setIcon(R.drawable.ic_logout).setTitle("Logout").setMessage("Sei sicuro di voler uscire?")
+                .setPositiveButton("Si", new DialogInterface.OnClickListener()                 {
+
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        logout(); // Last step. Logout function
+
+                    }
+                }).setNegativeButton("No", null);
+
+        AlertDialog alert1 = alert.create();
+        alert1.show();
+    }
+
+    private void logout() {
+        sessionManager.logout();
+        Toast.makeText(PostLoginActivity.this, "Logout...",Toast.LENGTH_SHORT).show();
+
     }
 }
 

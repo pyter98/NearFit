@@ -32,7 +32,6 @@
         android:layout_marginHorizontal="10dp"
         android:background="#9c0909"
         android:layout_below="@id/spinner"
-
         android:visibility="gone"
         >
     <TableRow>
@@ -113,7 +112,6 @@
         app:progressColour="#9c0909"
         app:backgroundColour="@color/colorAccent"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
 
         />
 
