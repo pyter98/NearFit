@@ -1,5 +1,8 @@
 package com.example.nearfit.BottomNavigationActivities.Home_nfc;
 
+import android.content.Context;
+import android.nfc.NfcAdapter;
+import android.nfc.NfcManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -106,7 +109,6 @@ public class nfc extends Fragment implements BiometricCallback {
     public void onAuthenticationSuccessful() {
 
         nfcTransfer();
-        Toast.makeText(getActivity().getApplicationContext(), "Accedi in palestra "+ name, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -122,10 +124,23 @@ public class nfc extends Fragment implements BiometricCallback {
     //Passaggio credenziali alla classe nfcTransfer
     protected void nfcTransfer(){
 
-        Intent i = new Intent(getActivity(), NfcTransfer.class);
+        NfcManager manager = (NfcManager) getContext().getSystemService(Context.NFC_SERVICE);
+        NfcAdapter adapter = manager.getDefaultAdapter();
+        if (adapter.isEnabled()) {
+            Intent i = new Intent(getActivity(), NfcTransfer.class);
+            i.putExtra("username", username);
+            i.putExtra("password", password);
+            startActivity(i);
+            Toast.makeText(getActivity().getApplicationContext(), "Accedi in palestra "+ name, Toast.LENGTH_SHORT).show();
+
+        }
+        else Toast.makeText(getActivity().getApplicationContext(), "Attiva NFC e riprova "+ name, Toast.LENGTH_SHORT).show();
+
+
+        /*Intent i = new Intent(getActivity(), NfcTransfer.class);
         i.putExtra("username", username);
         i.putExtra("password", password);
-        startActivity(i);
+        startActivity(i);*/
 
 
     }
