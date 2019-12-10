@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -29,10 +30,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.nearfit.BottomNavigationActivities.Home_nfc.NfcTransfer;
 import com.example.nearfit.R;
 import com.example.nearfit.SessionManager;
 import com.example.nearfit.Settings.EditUser;
 import com.example.nearfit.Settings.Impostazioni;
+import com.example.nearfit.Settings.Info;
 import com.example.nearfit.Widget.MaterialProgressBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -47,18 +50,20 @@ import java.util.List;
 import java.util.Map;
 
 public class scheda extends Fragment implements AdapterView.OnItemSelectedListener {
-    BottomNavigationView bottomNavigationView;
     private Spinner spinner;
     protected SessionManager sessionManager;
     protected HashMap<String, String> u;
-    private String userAct, pswAct, id, days, text;
+    private String userAct, pswAct, id, days, text,g, selezione;
     private List<String> spinnerArray;
     private TableLayout table;
     private TableRow tr;
     private TextView r1,r2,r3,r4,r5, messaggio;
     private static String URL_SCHEDA = "https://nearfit.altervista.org/fitness2/seleziona_giorno.php";
     MaterialProgressBar materialProgressBar;
-
+    private boolean isSetDays;
+    SessionScheda sessionScheda;
+    int s;
+    protected HashMap<String,String> giorno;
 
     @Override
     public View onCreateView(
@@ -77,6 +82,7 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
         id = u.get(sessionManager.ID);
 
         days = ((PostLoginActivity) getActivity()).getDays();
+
 
         spinnerArray = new ArrayList<String>();
         int i = Integer.parseInt(days);
@@ -109,11 +115,22 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
                 return view;
             }
         };
-        //
+
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+
+        sessionScheda = new SessionScheda(getContext());
+        giorno=sessionScheda.getGiorno();
+        selezione=giorno.get(sessionScheda.GIORNO);
+        if (!(selezione.equals("Seleziona Giorno"))) {
+            if (sessionScheda.isLoggin()) {
+                String[] split = selezione.split(" ");
+                s = Integer.parseInt(split[1]);
+                spinner.setSelection(s);
+            }
+        }
 
         table = root.findViewById(R.id.schedaTab);
         table.setColumnStretchable(0, true);
@@ -122,21 +139,23 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
         table.setColumnStretchable(3,true);
         table.setColumnStretchable(4,true);
 
-
+        //clearTable();
         return root;
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
         text = parent.getItemAtPosition(position).toString();
+        sessionScheda.setScheda(text);
         clearTable();
         if (position>0){
             messaggio.setVisibility(View.GONE);
             setTable();
+            //setRowsTable(esercizi,ripetizioni,recupero,metodologia,serie);
             table.setVisibility(View.VISIBLE);
             materialProgressBar.setVisibility(View.VISIBLE);
         }
-
     }
 
     @Override

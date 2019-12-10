@@ -50,7 +50,9 @@ public class PostLoginActivity extends AppCompatActivity {
     protected HashMap<String,String> user;
     private long backPressedTime;
     private String days;
-    private static String URL_SCHEDA = "https://nearfit.altervista.org/fitness2/infoscheda.php";
+    private static String URL_GIORNO = "https://nearfit.altervista.org/fitness2/infoscheda.php";
+    private static String URL_SCHEDA = "https://nearfit.altervista.org/fitness2/seleziona_giorno.php";
+    private String[] esercizi, ripetizioni, recupero, metodologia, serie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,7 @@ public class PostLoginActivity extends AppCompatActivity {
 
         }
         days = ImpostaGiorni();
+        //setTable();
     }
 
     //Gestione del Bottom Navigation menu
@@ -99,7 +102,7 @@ public class PostLoginActivity extends AppCompatActivity {
 
                             break;
                         case R.id.scheda:
-                            selectedFragment = new scheda();
+                            selectedFragment = new scheda(/*esercizi,ripetizioni,recupero,metodologia,serie*/);
                             break;
                         case R.id.cronometro:
                             selectedFragment = new cronometro();
@@ -162,7 +165,7 @@ public class PostLoginActivity extends AppCompatActivity {
     }
 
     protected String ImpostaGiorni() {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SCHEDA,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_GIORNO,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -202,11 +205,82 @@ public class PostLoginActivity extends AppCompatActivity {
         return days;
     }
 
+    /*private void setTable() {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_SCHEDA,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            String success = jsonObject.getString("success");
+                            JSONArray jsonArray = jsonObject.getJSONArray("giorno");
+                            //Log.e("PARAMETRI", jsonObject.toString());
+                            if (success.equals("1")) {
+                                String ese, rip, recup, met, ser;
+                                esercizi = new String[jsonArray.length()];
+                                ripetizioni = new String[jsonArray.length()];
+                                recupero = new String[jsonArray.length()];
+                                metodologia = new String[jsonArray.length()];
+                                serie = new String[jsonArray.length()];
+
+
+                                for (int i = 0;i<jsonArray.length();i++){
+
+                                    JSONObject object = jsonArray.getJSONObject(i);
+
+                                    ese = object.getString("esercizio").trim();
+                                    rip = object.getString("ripetizioni").trim();
+                                    recup = object.getString("recupero").trim();
+                                    met = object.getString("metodologia").trim();
+                                    ser = object.getString("serie").trim();
+                                    esercizi[i] = ese;
+                                    ripetizioni[i] = rip;
+                                    recupero[i]=recup;
+                                    metodologia[i]=met;
+                                    serie[i]=ser;
+
+
+                                }
+                                //setRowsTable(esercizi,ripetizioni,recupero,metodologia,serie);
+
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(PostLoginActivity.this, "Error "+ e.toString(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(PostLoginActivity.this, "Error "+ error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String,String> params = new HashMap<>();
+                params.put("user_name", mUser);
+                params.put("password", mPassword);
+                params.put("ID",id);
+                params.put("giorno","Giorno "+"1");
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(PostLoginActivity.this);
+        requestQueue.add(stringRequest);
+
+    }*/
+
     public void setDays(String days) {
         this.days = days;
     }
 
     public String getDays() {
+        nGiorni(days);
         return days;
     }
 
@@ -230,6 +304,31 @@ public class PostLoginActivity extends AppCompatActivity {
         sessionManager.logout();
         Toast.makeText(PostLoginActivity.this, "Logout...",Toast.LENGTH_SHORT).show();
 
+    }
+
+
+    public String[] getEsercizi() {
+        return esercizi;
+    }
+
+    public String[] getMetodologia() {
+        return metodologia;
+    }
+
+    public String[] getRecupero() {
+        return recupero;
+    }
+
+    public String[] getSerie() {
+        return serie;
+    }
+
+    public String[] getRipetizioni() {
+        return ripetizioni;
+    }
+
+    public String nGiorni(String n){
+        return ("Giorni "+ n);
     }
 }
 
