@@ -19,16 +19,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:windowSoftInputMode="adjustResize">
-        <activity android:name=".BottomNavigationActivities.Home_nfc.NfcTransfer"></activity>
-        <activity android:name=".Settings.Info">
+        <activity android:name=".BottomNavigationActivities.Home_nfc.NfcTransfer"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity android:name=".Settings.Info"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Settings.Impostazioni" />
         </activity>
-        <activity android:name=".Settings.EditUser" />
-        <activity android:name=".Settings.Impostazioni" />
-        <activity android:name=".BottomNavigationActivities.PostLoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Settings.EditUser"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Settings.Impostazioni"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".BottomNavigationActivities.PostLoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
