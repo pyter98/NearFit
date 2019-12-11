@@ -63,6 +63,7 @@ public class PostLoginActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         sessionManager.checkLogin();
 
+
         //Acquisisco dalla classe SeessionManager le credenziali
         user = sessionManager.getUserDetail();
         mUser = user.get(sessionManager.USERNAME);
@@ -304,27 +305,6 @@ public class PostLoginActivity extends AppCompatActivity {
         sessionManager.logout();
         Toast.makeText(PostLoginActivity.this, "Logout...",Toast.LENGTH_SHORT).show();
 
-    }
-
-
-    public String[] getEsercizi() {
-        return esercizi;
-    }
-
-    public String[] getMetodologia() {
-        return metodologia;
-    }
-
-    public String[] getRecupero() {
-        return recupero;
-    }
-
-    public String[] getSerie() {
-        return serie;
-    }
-
-    public String[] getRipetizioni() {
-        return ripetizioni;
     }
 
     public String nGiorni(String n){

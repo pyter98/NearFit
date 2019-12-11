@@ -36,6 +36,7 @@
         >
     <TableRow>
         <TextView
+
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="Esercizio"
@@ -100,6 +101,7 @@
         android:textSize="24sp"
         android:textColor="@color/colorPrimaryDark2"
         android:textStyle="bold"
+        android:visibility="gone"
         />
 
     <com.example.nearfit.Widget.MaterialProgressBar
