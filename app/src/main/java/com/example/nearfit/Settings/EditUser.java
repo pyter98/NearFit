@@ -19,6 +19,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.nearfit.BottomNavigationActivities.PostLoginActivity;
+import com.example.nearfit.BottomNavigationActivities.SessionScheda;
 import com.example.nearfit.R;
 import com.example.nearfit.SessionManager;
 
@@ -36,6 +38,14 @@ public class EditUser extends AppCompatActivity {
     private static String URL_EDIT = "https://nearfit.altervista.org/fitness2/edit.php";
     HashMap<String,String> u;
     String userAct, pswAct, id, name;
+    PostLoginActivity postLoginActivity;
+    String days;
+    protected HashMap<String, String> giorno;
+    protected SessionScheda sessionScheda;
+    private int[] giorno_selezionato;
+    private int i;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +62,8 @@ public class EditUser extends AppCompatActivity {
         username = findViewById(R.id.editUser);
         password = findViewById(R.id.editPsw);
         btnSave = findViewById(R.id.btn_edit);
+
+
 
         //Acquisisco dati utente dalla classe SessionManager()
         sessionManager = new SessionManager(this);
@@ -97,8 +109,17 @@ public class EditUser extends AppCompatActivity {
                                 if (!(new_user.equals("")) && !(new_psw.equals(""))) {
 
                                     if (new_psw.length()>=8){
+                                        //sessionScheda = new SessionScheda(getApplicationContext());
 
-                                        Toast.makeText(EditUser.this, "Username e/o Password modificati correttamente!", Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(EditUser.this, "Username e/o Password modificati correttamente!", Toast.LENGTH_SHORT).show();
+                                        //giorno = sessionScheda.getScheda();
+                                        //days = giorno.get(sessionScheda.GIORNO);
+                                        //i=Integer.parseInt(days);
+                                        //giorno_selezionato = new int[i];
+                                        /*for (int x = 0; x < i; x++) {
+                                            giorno_selezionato[x] = x + 1;
+                                        }
+                                        sessionScheda.setSelezione(giorno_selezionato);*/
                                         sessionManager.createSession(name, new_user, id, new_psw);
                                         Intent i = new Intent(EditUser.this, Impostazioni.class);
                                         startActivity(i);

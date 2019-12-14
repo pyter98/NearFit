@@ -30,8 +30,7 @@ public class SessionScheda {
     public static final String METODOLOGIA = "METODOLOGIA";
     public static final String SERIE = "SERIE";
     public static final String SELEZIONE = "SELEZIONE";
-    public static final String CONNESSIONE = "CONNESSIONE";
-    StringBuilder esercizi, ripetizioni, recupero, serie, metodologia,sel, conn;
+    private StringBuilder esercizi, ripetizioni, recupero, serie, metodologia,sel;
 
     public SessionScheda(Context context) {
         this.context = context;
@@ -83,7 +82,6 @@ public class SessionScheda {
         scheda.put(SERIE, sharedPreferences.getString(SERIE, null));
         scheda.put(RIPETIZIONI, sharedPreferences.getString(RIPETIZIONI, null));
         scheda.put(SELEZIONE, sharedPreferences.getString(SELEZIONE, null));
-        scheda.put(CONNESSIONE, sharedPreferences.getString(CONNESSIONE, null));
 
         return scheda;
     }
@@ -94,15 +92,6 @@ public class SessionScheda {
             sel.append(selezione[i]).append(",");
         }
         editor.putString(SELEZIONE,sel.toString());
-        editor.apply();
-    }
-
-    public void setConnessione (int[] connessione){
-        conn = new StringBuilder();
-        for (int i = 0; i < connessione.length; i++) {
-            conn.append(connessione[i]).append(",");
-        }
-        editor.putString(CONNESSIONE,conn.toString());
         editor.apply();
     }
 }

@@ -43,20 +43,19 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
     private Spinner spinner;
     protected SessionManager sessionManager;
     protected HashMap<String, String> u;
-    private String userAct, pswAct, id, days, text,g, selezione,s;
+    private String userAct, pswAct, id, days, text, gio_sel;
     private List<String> spinnerArray;
     private TableLayout table;
     private TableRow tr;
-    private TextView r1,r2,r3,r4,r5, messaggio;
+    private TextView r1, r2, r3, r4, r5, messaggio;
     private static String URL_SCHEDA = "https://nearfit.altervista.org/fitness2/seleziona_giorno.php";
-    MaterialProgressBar materialProgressBar;
-    private boolean isSetDays;
-    SessionScheda sessionScheda;
-    private int[] selezionato;
-    protected HashMap<String,String> giorno;
-    private String[] ese, rip, recup, met, ser, sel,conn;
-    int size;
-    boolean check;
+    private MaterialProgressBar materialProgressBar;
+    protected SessionScheda sessionScheda;
+    private int[] giorno_selezionato;
+    protected HashMap<String, String> giorno;
+    private String[] ese, rip, recup, met, ser, sel;
+    private int size;
+    private boolean check;
 
 
     @Override
@@ -87,11 +86,11 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                getContext(), R.layout.color_spinner_first, spinnerArray){
+                getContext(), R.layout.color_spinner_first, spinnerArray) {
 
             @Override
-            public boolean isEnabled(int position){
-                if(position == 0) return false;
+            public boolean isEnabled(int position) {
+                if (position == 0) return false;
                 else return true;
             }
 
@@ -100,10 +99,9 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
                                         ViewGroup parent) {
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
-                if(position == 0){
+                if (position == 0) {
                     tv.setTextColor(Color.GRAY);
-                }
-                else {
+                } else {
                     tv.setTextColor(Color.BLACK);
                 }
                 return view;
@@ -117,49 +115,45 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
 
 
         sessionScheda = new SessionScheda(getContext());
-        giorno=sessionScheda.getScheda();
-        selezione=giorno.get(sessionScheda.GIORNO);
-        if (selezione==null){
+        giorno = sessionScheda.getScheda();
+        gio_sel = giorno.get(sessionScheda.GIORNO);
+        if (gio_sel == null) {
             messaggio.setVisibility(View.VISIBLE);
-            /*connessione = new int[i];
-            setConnessione();*/
-            selezionato =new int[i];
-            for (int x=0; x<i;x++){
-                selezionato[x]=x+1;
+            giorno_selezionato = new int[i];
+            for (int x = 0; x < i; x++) {
+                giorno_selezionato[x] = x + 1;
             }
-            //sessionScheda.setConnessione(connessione);
-            sessionScheda.setSelezione(selezionato);
+            sessionScheda.setSelezione(giorno_selezionato);
             Log.i("sessione", "null");
-            sessionScheda.setScheda("0",ese,rip,recup,met,ser);
-        }
-        else {
+            sessionScheda.setScheda("0", ese, rip, recup, met, ser);
+        } else {
 
-            if (!(selezione.equals("0"))) {
+            if (!(gio_sel.equals("0"))) {
                 if (sessionScheda.isSet()) {
                     String s;
                     s = giorno.get(sessionScheda.SELEZIONE);
                     sel = s.split(",");
-                    creaArraySelezionato(sel);
+                    creaArrayGiorni(sel);
 
                     /*s = giorno.get(sessionScheda.CONNESSIONE);
                     conn = s.split(",");
                     creaArrayConnessione(conn);*/
-                    spinner.setSelection(Integer.parseInt(selezione));
+                    spinner.setSelection(Integer.parseInt(gio_sel));
 
-                    Rimuovi(Integer.parseInt(selezione));
-                    Log.i("sessione", selezione);
+                    Rimuovi(Integer.parseInt(gio_sel));
+                    Log.i("sessione", gio_sel);
                 }
             }
-            //messaggio.setVisibility(View.VISIBLE);
+            messaggio.setVisibility(View.VISIBLE);
         }
 
 
         table = root.findViewById(R.id.schedaTab);
         table.setColumnStretchable(0, true);
-        table.setColumnStretchable(1,true);
-        table.setColumnStretchable(2,true);
-        table.setColumnStretchable(3,true);
-        table.setColumnStretchable(4,true);
+        table.setColumnStretchable(1, true);
+        table.setColumnStretchable(2, true);
+        table.setColumnStretchable(3, true);
+        table.setColumnStretchable(4, true);
 
         //clearTable();
         return root;
@@ -171,24 +165,21 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
         text = parent.getItemAtPosition(position).toString();
         String pos = Integer.toString(position);
         clearTable();
-        if (position>0){
+        if (position > 0) {
             messaggio.setVisibility(View.GONE);
             table.setVisibility(View.VISIBLE);
             materialProgressBar.setVisibility(View.VISIBLE);
 
-            for (int c=0; c<selezionato.length;c++) {
-                if (selezionato[c] == position)
+            for (int c = 0; c < giorno_selezionato.length; c++) {
+                if (giorno_selezionato[c] == position)
                     check = true;
-
             }
             if (check) {
                 setTable(pos);
-                Toast.makeText(getContext(),"Connetto...",Toast.LENGTH_SHORT).show();
-            }
+                Toast.makeText(getContext(), "Connetto...", Toast.LENGTH_SHORT).show();
+            } else {
 
-            else {
-
-                String e,r,ri,m,se;
+                String e, r, ri, m, se;
                 e = giorno.get(sessionScheda.ESERCIZI);
                 r = giorno.get(sessionScheda.RECUPERO);
                 ri = giorno.get(sessionScheda.RIPETIZIONI);
@@ -200,10 +191,8 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
                 met = m.split(",");
                 ser = se.split(",");
 
-                setRowsTable(ese,rip,recup,met,ser);
-                //connessione[position-1] =1;
+                setRowsTable(ese, rip, recup, met, ser);
             }
-            //sessionScheda.setConnessione(connessione);
         }
     }
 
@@ -221,7 +210,6 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
                             JSONObject jsonObject = new JSONObject(response);
                             String success = jsonObject.getString("success");
                             JSONArray jsonArray = jsonObject.getJSONArray("giorno");
-                            //Log.e("PARAMETRI", jsonObject.toString());
                             if (success.equals("1")) {
                                 String ese, rip, recup, met, ser;
                                 String[] esercizi = new String[jsonArray.length()];
@@ -231,7 +219,7 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
                                 String[] serie = new String[jsonArray.length()];
 
 
-                                for (int i = 0;i<jsonArray.length();i++){
+                                for (int i = 0; i < jsonArray.length(); i++) {
 
                                     JSONObject object = jsonArray.getJSONObject(i);
 
@@ -242,54 +230,52 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
                                     ser = object.getString("serie").trim();
                                     esercizi[i] = ese;
                                     ripetizioni[i] = rip;
-                                    recupero[i]=recup;
-                                    metodologia[i]=met;
-                                    serie[i]=ser;
+                                    recupero[i] = recup;
+                                    metodologia[i] = met;
+                                    serie[i] = ser;
 
 
                                 }
-                                sessionScheda.setScheda(giorno,esercizi,ripetizioni,recupero,metodologia,serie);
-                                setRowsTable(esercizi,ripetizioni,recupero,metodologia,serie);
+                                sessionScheda.setScheda(giorno, esercizi, ripetizioni, recupero, metodologia, serie);
+                                setRowsTable(esercizi, ripetizioni, recupero, metodologia, serie);
 
 
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            Toast.makeText(getContext(), "Error "+ e.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Error " + e.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getContext(), "Error "+ error.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Error " + error.toString(), Toast.LENGTH_SHORT).show();
                     }
-                })
-        {
+                }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
+                Map<String, String> params = new HashMap<>();
                 params.put("user_name", userAct);
                 params.put("password", pswAct);
-                params.put("ID",id);
-                params.put("giorno",getText());
+                params.put("ID", id);
+                params.put("giorno", getText());
                 return params;
             }
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(stringRequest);
-
     }
 
     public String getText() {
         return text;
     }
 
-    private void setRowsTable(String[] ese, String[] rip, String[] recup, String[] met, String[] ser){
+    private void setRowsTable(String[] ese, String[] rip, String[] recup, String[] met, String[] ser) {
 
-        for (int i=0; i<ese.length; i++){
-            tr= new TableRow(getContext());
+        for (int i = 0; i < ese.length; i++) {
+            tr = new TableRow(getContext());
 
             r1 = new TextView(getContext());
             r2 = new TextView(getContext());
@@ -297,7 +283,7 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
             r4 = new TextView(getContext());
             r5 = new TextView(getContext());
 
-            r1.setText(ese[i]+"\n");
+            r1.setText(ese[i] + "\n");
             r1.setWidth(200);
             r1.setGravity(Gravity.CENTER);
 
@@ -321,47 +307,31 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
 
             tr.setBackgroundResource(R.color.colorAccent);
             table.addView(tr);
-
         }
         materialProgressBar.setVisibility(View.GONE);
 
     }
 
-    private void clearTable(){
+    private void clearTable() {
 
         int count = table.getChildCount();
-        if (count > 1){
-            table.removeViews(1,count-1);
+        if (count > 1) {
+            table.removeViews(1, count - 1);
         }
     }
 
-    public void Rimuovi(int x){
-
-        size = selezionato.length;
-        for (int c=x-1; c<size-1;c++){
-            selezionato[c] = selezionato[c+1];
+    public void Rimuovi(int x) {
+        size = giorno_selezionato.length;
+        for (int c = x - 1; c < size - 1; c++) {
+            giorno_selezionato[c] = giorno_selezionato[c + 1];
         }
-        selezionato[size-1] = 0;
-
+        giorno_selezionato[size - 1] = 0;
         size--;
-
     }
 
-    public void creaArraySelezionato(String[] sel){
-        selezionato = new int[sel.length];
-        for (int i = 0; i<sel.length;i++)
-            selezionato[i] = Integer.parseInt(sel[i]);
+    public void creaArrayGiorni(String[] sel) {
+        giorno_selezionato = new int[sel.length];
+        for (int i = 0; i < sel.length; i++)
+            giorno_selezionato[i] = Integer.parseInt(sel[i]);
     }
-
-    /*public void creaArrayConnessione (String[] con){
-        connessione = new int[con.length];
-        for (int i = 0; i<con.length;i++)
-            connessione[i] = Integer.parseInt(con[i]);
-    }
-
-    public void setConnessione() {
-        for (int i = 0; i<connessione.length; i++){
-            connessione[i]=0;
-        }
-    }*/
 }

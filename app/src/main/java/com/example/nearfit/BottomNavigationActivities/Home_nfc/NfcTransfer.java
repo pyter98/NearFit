@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nearfit.BottomNavigationActivities.PostLoginActivity;
 import com.example.nearfit.R;
 
 import static android.nfc.NdefRecord.createMime;
@@ -24,6 +25,7 @@ public class NfcTransfer extends AppCompatActivity implements NfcAdapter.CreateN
     NfcAdapter nfcAdapter;
     String username, password;
     Bundle bundle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class NfcTransfer extends AppCompatActivity implements NfcAdapter.CreateN
             finish();
             return;
         }
+
+
 
         //Acquisizione delle credenziali dalla classe nfc()
         bundle = getIntent().getExtras();
