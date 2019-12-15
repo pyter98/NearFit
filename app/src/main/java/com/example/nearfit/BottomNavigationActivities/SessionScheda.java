@@ -94,4 +94,14 @@ public class SessionScheda {
         editor.putString(SELEZIONE,sel.toString());
         editor.apply();
     }
+
+    public void ResetScheda() {
+        editor.clear();
+        editor.commit();
+        //Intent i = new Intent(context, PostLoginActivity.class);
+        //((PostLoginActivity) context).finish();
+        //context.startActivity(i);
+
+
+    }
 }

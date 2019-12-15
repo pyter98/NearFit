@@ -59,6 +59,9 @@ public class EditUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
 
+        sessionScheda = new SessionScheda(this);
+        giorno = sessionScheda.getScheda();
+
         username = findViewById(R.id.editUser);
         password = findViewById(R.id.editPsw);
         btnSave = findViewById(R.id.btn_edit);
@@ -109,20 +112,12 @@ public class EditUser extends AppCompatActivity {
                                 if (!(new_user.equals("")) && !(new_psw.equals(""))) {
 
                                     if (new_psw.length()>=8){
-                                        //sessionScheda = new SessionScheda(getApplicationContext());
 
-                                        //Toast.makeText(EditUser.this, "Username e/o Password modificati correttamente!", Toast.LENGTH_SHORT).show();
-                                        //giorno = sessionScheda.getScheda();
-                                        //days = giorno.get(sessionScheda.GIORNO);
-                                        //i=Integer.parseInt(days);
-                                        //giorno_selezionato = new int[i];
-                                        /*for (int x = 0; x < i; x++) {
-                                            giorno_selezionato[x] = x + 1;
-                                        }
-                                        sessionScheda.setSelezione(giorno_selezionato);*/
+                                        Toast.makeText(EditUser.this, "Username e/o Password modificati correttamente!", Toast.LENGTH_SHORT).show();
+                                        sessionScheda.ResetScheda();
                                         sessionManager.createSession(name, new_user, id, new_psw);
-                                        Intent i = new Intent(EditUser.this, Impostazioni.class);
-                                        startActivity(i);
+                                        /*Intent i = new Intent(EditUser.this, Impostazioni.class);
+                                        startActivity(i);*/
                                         EditUser.this.finish();
                                     }
 
