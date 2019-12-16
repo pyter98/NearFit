@@ -25,6 +25,7 @@ public class NfcTransfer extends AppCompatActivity implements NfcAdapter.CreateN
     NfcAdapter nfcAdapter;
     String username, password;
     Bundle bundle;
+    NdefMessage msg;
 
 
     @Override
@@ -57,21 +58,22 @@ public class NfcTransfer extends AppCompatActivity implements NfcAdapter.CreateN
         textView.append(" "+username);
 
         // Callback
+        nfcAdapter.getDefaultAdapter(this);
         nfcAdapter.setNdefPushMessageCallback(this, this);
     }
 
-    @Override
+    /*@Override
     public boolean onSupportNavigateUp(){
         this.finish();
         return true;
-    }
+    }*/
 
     @Override
     public NdefMessage createNdefMessage(NfcEvent event) {
         String text = username;
         String text2 = password;
         String res = text + " "+ text2;
-        NdefMessage msg = new NdefMessage(
+        msg = new NdefMessage(
                 new NdefRecord[] { createMime(
                         "application/vnd.com.example.nearfit.BottomNavigationActivities.Home_nfc.NfcTransfer", res.getBytes())
 
@@ -79,9 +81,9 @@ public class NfcTransfer extends AppCompatActivity implements NfcAdapter.CreateN
 
         return msg;
     }
-
+/*
     @Override
     public void onResume() {
         super.onResume();
-    }
+    }*/
 }
