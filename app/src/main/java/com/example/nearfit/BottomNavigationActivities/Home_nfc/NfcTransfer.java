@@ -25,7 +25,6 @@ public class NfcTransfer extends AppCompatActivity implements NfcAdapter.CreateN
     NfcAdapter nfcAdapter;
     String username, password;
     Bundle bundle;
-    NdefMessage msg;
 
 
     @Override
@@ -73,7 +72,7 @@ public class NfcTransfer extends AppCompatActivity implements NfcAdapter.CreateN
         String text = username;
         String text2 = password;
         String res = text + " "+ text2;
-        msg = new NdefMessage(
+        NdefMessage msg = new NdefMessage(
                 new NdefRecord[] { createMime(
                         "application/vnd.com.example.nearfit.BottomNavigationActivities.Home_nfc.NfcTransfer", res.getBytes())
 
