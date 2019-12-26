@@ -144,7 +144,7 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
                     Log.i("sessione", gio_sel);
                 }
             }
-            messaggio.setVisibility(View.VISIBLE);
+            //messaggio.setVisibility(View.VISIBLE);
         }
 
 
@@ -170,28 +170,41 @@ public class scheda extends Fragment implements AdapterView.OnItemSelectedListen
             table.setVisibility(View.VISIBLE);
             materialProgressBar.setVisibility(View.VISIBLE);
 
-            for (int c = 0; c < giorno_selezionato.length; c++) {
-                if (giorno_selezionato[c] == position)
-                    check = true;
-            }
-            if (check) {
+            if (giorno_selezionato == null) {
+                int i = Integer.parseInt(days);
+                giorno_selezionato = new int[i];
+                for (int x = 0; x < i; x++) {
+                    giorno_selezionato[x] = x + 1;
+                }
+                sessionScheda.setSelezione(giorno_selezionato);
+                sessionScheda.setScheda("0", ese, rip, recup, met, ser);
                 setTable(pos);
-                Toast.makeText(getContext(), "Connetto...", Toast.LENGTH_SHORT).show();
-            } else {
+            }
+            else {
 
-                String e, r, ri, m, se;
-                e = giorno.get(sessionScheda.ESERCIZI);
-                r = giorno.get(sessionScheda.RECUPERO);
-                ri = giorno.get(sessionScheda.RIPETIZIONI);
-                m = giorno.get(sessionScheda.METODOLOGIA);
-                se = giorno.get(sessionScheda.SERIE);
-                ese = e.split(",");
-                recup = r.split(",");
-                rip = ri.split(",");
-                met = m.split(",");
-                ser = se.split(",");
+                for (int c = 0; c < giorno_selezionato.length; c++) {
+                    if (giorno_selezionato[c] == position)
+                        check = true;
+                }
+                if (check) {
+                    setTable(pos);
+                    Toast.makeText(getContext(), "Connetto...", Toast.LENGTH_SHORT).show();
+                } else {
 
-                setRowsTable(ese, rip, recup, met, ser);
+                    String e, r, ri, m, se;
+                    e = giorno.get(sessionScheda.ESERCIZI);
+                    r = giorno.get(sessionScheda.RECUPERO);
+                    ri = giorno.get(sessionScheda.RIPETIZIONI);
+                    m = giorno.get(sessionScheda.METODOLOGIA);
+                    se = giorno.get(sessionScheda.SERIE);
+                    ese = e.split(",");
+                    recup = r.split(",");
+                    rip = ri.split(",");
+                    met = m.split(",");
+                    ser = se.split(",");
+
+                    setRowsTable(ese, rip, recup, met, ser);
+                }
             }
         }
     }

@@ -51,8 +51,6 @@ public class PostLoginActivity extends AppCompatActivity {
     private long backPressedTime;
     private String days;
     private static String URL_GIORNO = "https://nearfit.altervista.org/fitness2/infoscheda.php";
-    private static String URL_SCHEDA = "https://nearfit.altervista.org/fitness2/seleziona_giorno.php";
-    private String[] esercizi, ripetizioni, recupero, metodologia, serie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

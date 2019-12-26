@@ -21,14 +21,14 @@
 
     <TextView
         android:id="@+id/sviluppatori"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
         android:drawableLeft="@drawable/ic_develop"
-        android:fontFamily="cursive"
+        android:fontFamily="sans-serif-thin"
         android:gravity="center"
-        android:text="Sviluppatori:"
+        android:text=" Sviluppatori:"
         android:textSize="30sp"
         android:textStyle="bold" />
 
